@@ -1,2 +1,6 @@
+USE master;
+GO
 IF NOT DB_ID('versandhaus') IS NULL ALTER DATABASE versandhaus SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
 IF NOT DB_ID('versandhaus') IS NULL DROP DATABASE versandhaus;
+GO
