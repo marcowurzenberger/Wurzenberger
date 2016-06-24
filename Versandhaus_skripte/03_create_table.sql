@@ -6,13 +6,8 @@ CREATE TABLE artikel(
 	bez NVARCHAR(50) NOT NULL,
 	preis DECIMAL(6,2) NOT NULL,
 	erstellDatum DATETIME NOT NULL DEFAULT GETDATE(),
-	artikelDetail_id INT NOT NULL
-);
-GO
-CREATE TABLE artikelGeloescht(
-	id INT IDENTITY NOT NULL,
-	artikel_id INT NOT NULL,
-	loeschDatum DATETIME NOT NULL DEFAULT GETDATE()
+	artikelDetail_id INT NOT NULL,
+	artikelGeloescht BIT NOT NULL
 );
 GO
 CREATE TABLE bestellung(
@@ -41,13 +36,12 @@ GO
 CREATE TABLE land(
 	id INT IDENTITY NOT NULL,
 	bez NVARCHAR(50) NOT NULL,
-	laenderVorwahl NVARCHAR(10) NOT NULL
 );
 GO
 CREATE TABLE telefon(
 	id INT IDENTITY NOT NULL,
 	vorwahl NVARCHAR(10) NOT NULL,
-	land_id INT NOT NULL,
+	laenderVorwahl NVARCHAR(10) NOT NULL,
 	nummer NVARCHAR(20) NOT NULL
 );
 GO

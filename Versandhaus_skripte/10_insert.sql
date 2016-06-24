@@ -8,11 +8,11 @@ PRINT '';
 PRINT '';
 PRINT 'Land anlegen';
 PRINT '';
-INSERT INTO land(bez, laenderVorwahl) VALUES('Oesterreich', '0043');
-INSERT INTO land(bez, laenderVorwahl) VALUES('Frankreich', '0032');
-INSERT INTO land(bez, laenderVorwahl) VALUES('Deutschland', '0049');
-INSERT INTO land(bez, laenderVorwahl) VALUES('Italien', '0031');
-INSERT INTO land(bez, laenderVorwahl) VALUES('Schweiz', '0039');
+INSERT INTO land(bez) VALUES('Oesterreich');
+INSERT INTO land(bez) VALUES('Frankreich');
+INSERT INTO land(bez) VALUES('Deutschland');
+INSERT INTO land(bez) VALUES('Italien');
+INSERT INTO land(bez) VALUES('Schweiz');
 GO
 
 PRINT '';
@@ -37,11 +37,11 @@ GO
 PRINT '';
 PRINT 'Telefon anlegen';
 PRINT '';
-INSERT INTO telefon(vorwahl, land_id, nummer) VALUES('676', 1, '123456');
-INSERT INTO telefon(vorwahl, land_id, nummer) VALUES('7142', 2, '251452');
-INSERT INTO telefon(vorwahl, land_id, nummer) VALUES('8425', 3, '33114');
-INSERT INTO telefon(vorwahl, land_id, nummer) VALUES('4689', 4, '89542');
-INSERT INTO telefon(vorwahl, land_id, nummer) VALUES('362', 5, '694752');
+INSERT INTO telefon(vorwahl, nummer, laenderVorwahl) VALUES('676', '123456', '0043');
+INSERT INTO telefon(vorwahl, nummer, laenderVorwahl) VALUES('7142', '251452', '+49');
+INSERT INTO telefon(vorwahl, nummer, laenderVorwahl) VALUES('8425', '33114', '0032');
+INSERT INTO telefon(vorwahl, nummer, laenderVorwahl) VALUES('4689', '89542', '0065');
+INSERT INTO telefon(vorwahl, nummer, laenderVorwahl) VALUES('362', '694752', '0023');
 GO
 
 PRINT '';
@@ -72,18 +72,12 @@ GO
 PRINT '';
 PRINT 'Artikel anlegen';
 PRINT '';
-INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Weber Grill', 199.90, 1);
-INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Wiener Zucker', 2.50, 2);
-INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Meinl Zuckerl', 50.00, 3);
-INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Eier', 0.33, 4);
-INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Huelsinger', 20.00, 5);
-GO
+INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Weber Grill', 199.90, 1, 0);
+INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Wiener Zucker', 2.50, 2, 0);
+INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Meinl Zuckerl', 50.00, 3, 0);
+INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Eier', 0.33, 4, 0);
+INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Huelsinger', 20.00, 5, 0);
 
-PRINT '';
-PRINT 'Geloeschte Artikel erzeugen';
-PRINT '';
-INSERT INTO artikelGeloescht(artikel_id) VALUES(3);
-INSERT INTO artikelGeloescht(artikel_id) VALUES(4);
 GO
 
 PRINT '';

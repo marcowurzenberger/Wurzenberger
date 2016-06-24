@@ -11,11 +11,6 @@ FOREIGN KEY( land_id )
 REFERENCES land(id);
 GO
 
-ALTER TABLE telefon ADD CONSTRAINT fk_telefon_land
-FOREIGN KEY( land_id )
-REFERENCES land(id);
-GO
-
 ALTER TABLE artikelBestellung ADD CONSTRAINT fk_artikelBestellung_artikel
 FOREIGN KEY( artikel_id )
 REFERENCES artikel(id);
@@ -54,9 +49,4 @@ GO
 ALTER TABLE adresseKunde ADD CONSTRAINT fk_adresseKunde_kunde
 FOREIGN KEY( kunde_id )
 REFERENCES kunde(id);
-GO
-
-ALTER TABLE artikelGeloescht ADD CONSTRAINT fk_artikelGeloescht_artikel
-FOREIGN KEY( artikel_id )
-REFERENCES artikel(id);
 GO
