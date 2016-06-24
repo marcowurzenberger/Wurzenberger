@@ -1,0 +1,687 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="versandhausModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adresse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="land_id" Type="int" Nullable="false" />
+          <Property Name="ort" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="plz" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="strasse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="stiege" Type="nvarchar" MaxLength="10" />
+          <Property Name="stock" Type="nvarchar" MaxLength="10" />
+          <Property Name="nr" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="adresseKunde">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kunde_id" Type="int" Nullable="false" />
+          <Property Name="adresse_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="artikel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bez" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="preis" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="erstellDatum" Type="datetime" Nullable="false" />
+          <Property Name="artikelDetail_id" Type="int" Nullable="false" />
+          <Property Name="artikelGeloescht" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="artikelBestellung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="artikel_id" Type="int" Nullable="false" />
+          <Property Name="bestellung_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="artikelDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="verpackungseinheit" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="beschreibung" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bestellung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anzahl" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kunde">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vorname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nachname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="kundeBestellung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kunde_id" Type="int" Nullable="false" />
+          <Property Name="bestellung_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="land">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bez" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="telefon">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vorwahl" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="laenderVorwahl" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="nummer" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="telefonKunde">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kunde_id" Type="int" Nullable="false" />
+          <Property Name="telefon_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_adresse_land">
+          <End Role="land" Type="Self.land" Multiplicity="1" />
+          <End Role="adresse" Type="Self.adresse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="land">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adresse">
+              <PropertyRef Name="land_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adresseKunde_adresse">
+          <End Role="adresse" Type="Self.adresse" Multiplicity="1" />
+          <End Role="adresseKunde" Type="Self.adresseKunde" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adresse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adresseKunde">
+              <PropertyRef Name="adresse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adresseKunde_kunde">
+          <End Role="kunde" Type="Self.kunde" Multiplicity="1" />
+          <End Role="adresseKunde" Type="Self.adresseKunde" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kunde">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adresseKunde">
+              <PropertyRef Name="kunde_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_artikel_artikelDetail">
+          <End Role="artikelDetail" Type="Self.artikelDetail" Multiplicity="1" />
+          <End Role="artikel" Type="Self.artikel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artikelDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="artikel">
+              <PropertyRef Name="artikelDetail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_artikelBestellung_artikel">
+          <End Role="artikel" Type="Self.artikel" Multiplicity="1" />
+          <End Role="artikelBestellung" Type="Self.artikelBestellung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artikel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="artikelBestellung">
+              <PropertyRef Name="artikel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_artikelBestellung_bestellung">
+          <End Role="bestellung" Type="Self.bestellung" Multiplicity="1" />
+          <End Role="artikelBestellung" Type="Self.artikelBestellung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bestellung">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="artikelBestellung">
+              <PropertyRef Name="bestellung_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_kundeBestellung_bestellung">
+          <End Role="bestellung" Type="Self.bestellung" Multiplicity="1" />
+          <End Role="kundeBestellung" Type="Self.kundeBestellung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bestellung">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kundeBestellung">
+              <PropertyRef Name="bestellung_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_kundeBestellung_kunde">
+          <End Role="kunde" Type="Self.kunde" Multiplicity="1" />
+          <End Role="kundeBestellung" Type="Self.kundeBestellung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kunde">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kundeBestellung">
+              <PropertyRef Name="kunde_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_telefonKunde_kunde">
+          <End Role="kunde" Type="Self.kunde" Multiplicity="1" />
+          <End Role="telefonKunde" Type="Self.telefonKunde" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kunde">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="telefonKunde">
+              <PropertyRef Name="kunde_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_telefonKunde_telefon">
+          <End Role="telefon" Type="Self.telefon" Multiplicity="1" />
+          <End Role="telefonKunde" Type="Self.telefonKunde" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="telefon">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="telefonKunde">
+              <PropertyRef Name="telefon_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="versandhausModelStoreContainer">
+          <EntitySet Name="adresse" EntityType="Self.adresse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adresseKunde" EntityType="Self.adresseKunde" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="artikel" EntityType="Self.artikel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="artikelBestellung" EntityType="Self.artikelBestellung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="artikelDetail" EntityType="Self.artikelDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bestellung" EntityType="Self.bestellung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kunde" EntityType="Self.kunde" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kundeBestellung" EntityType="Self.kundeBestellung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="land" EntityType="Self.land" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="telefon" EntityType="Self.telefon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="telefonKunde" EntityType="Self.telefonKunde" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_adresse_land" Association="Self.fk_adresse_land">
+            <End Role="land" EntitySet="land" />
+            <End Role="adresse" EntitySet="adresse" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adresseKunde_adresse" Association="Self.fk_adresseKunde_adresse">
+            <End Role="adresse" EntitySet="adresse" />
+            <End Role="adresseKunde" EntitySet="adresseKunde" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adresseKunde_kunde" Association="Self.fk_adresseKunde_kunde">
+            <End Role="kunde" EntitySet="kunde" />
+            <End Role="adresseKunde" EntitySet="adresseKunde" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikel_artikelDetail" Association="Self.fk_artikel_artikelDetail">
+            <End Role="artikelDetail" EntitySet="artikelDetail" />
+            <End Role="artikel" EntitySet="artikel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikelBestellung_artikel" Association="Self.fk_artikelBestellung_artikel">
+            <End Role="artikel" EntitySet="artikel" />
+            <End Role="artikelBestellung" EntitySet="artikelBestellung" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikelBestellung_bestellung" Association="Self.fk_artikelBestellung_bestellung">
+            <End Role="bestellung" EntitySet="bestellung" />
+            <End Role="artikelBestellung" EntitySet="artikelBestellung" />
+          </AssociationSet>
+          <AssociationSet Name="fk_kundeBestellung_bestellung" Association="Self.fk_kundeBestellung_bestellung">
+            <End Role="bestellung" EntitySet="bestellung" />
+            <End Role="kundeBestellung" EntitySet="kundeBestellung" />
+          </AssociationSet>
+          <AssociationSet Name="fk_kundeBestellung_kunde" Association="Self.fk_kundeBestellung_kunde">
+            <End Role="kunde" EntitySet="kunde" />
+            <End Role="kundeBestellung" EntitySet="kundeBestellung" />
+          </AssociationSet>
+          <AssociationSet Name="fk_telefonKunde_kunde" Association="Self.fk_telefonKunde_kunde">
+            <End Role="kunde" EntitySet="kunde" />
+            <End Role="telefonKunde" EntitySet="telefonKunde" />
+          </AssociationSet>
+          <AssociationSet Name="fk_telefonKunde_telefon" Association="Self.fk_telefonKunde_telefon">
+            <End Role="telefon" EntitySet="telefon" />
+            <End Role="telefonKunde" EntitySet="telefonKunde" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="versandhausModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adresse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plz" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Strasse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stiege" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Stock" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nummer" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Land" Relationship="Self.fk_adresse_land" FromRole="adresse" ToRole="land" />
+          <NavigationProperty Name="AlleAdresseKunden" Relationship="Self.fk_adresseKunde_adresse" FromRole="adresse" ToRole="adresseKunde" />
+        </EntityType>
+        <EntityType Name="AdresseKunde">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Adresse" Relationship="Self.fk_adresseKunde_adresse" FromRole="adresseKunde" ToRole="adresse" />
+          <NavigationProperty Name="Kunde" Relationship="Self.fk_adresseKunde_kunde" FromRole="adresseKunde" ToRole="kunde" />
+        </EntityType>
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Preis" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="ErstellDatum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArtikelGeloescht" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ArtikelDetail" Relationship="Self.fk_artikel_artikelDetail" FromRole="artikel" ToRole="artikelDetail" />
+          <NavigationProperty Name="AlleArtikelBestellungen" Relationship="Self.fk_artikelBestellung_artikel" FromRole="artikel" ToRole="artikelBestellung" />
+        </EntityType>
+        <EntityType Name="ArtikelBestellung">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Artikel" Relationship="Self.fk_artikelBestellung_artikel" FromRole="artikelBestellung" ToRole="artikel" />
+          <NavigationProperty Name="Bestellung" Relationship="Self.fk_artikelBestellung_bestellung" FromRole="artikelBestellung" ToRole="bestellung" />
+        </EntityType>
+        <EntityType Name="ArtikelDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Verpackungseinheit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Beschreibung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AlleArtikel" Relationship="Self.fk_artikel_artikelDetail" FromRole="artikelDetail" ToRole="artikel" />
+        </EntityType>
+        <EntityType Name="Bestellung">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Anzahl" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AlleArtikelBestellungen" Relationship="Self.fk_artikelBestellung_bestellung" FromRole="bestellung" ToRole="artikelBestellung" />
+          <NavigationProperty Name="AlleKundeBestellungen" Relationship="Self.fk_kundeBestellung_bestellung" FromRole="bestellung" ToRole="kundeBestellung" />
+        </EntityType>
+        <EntityType Name="Kunde">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vorname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nachname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AlleAdresseKunden" Relationship="Self.fk_adresseKunde_kunde" FromRole="kunde" ToRole="adresseKunde" />
+          <NavigationProperty Name="AlleKundeBestellungen" Relationship="Self.fk_kundeBestellung_kunde" FromRole="kunde" ToRole="kundeBestellung" />
+          <NavigationProperty Name="AlleTelefonKunden" Relationship="Self.fk_telefonKunde_kunde" FromRole="kunde" ToRole="telefonKunde" />
+        </EntityType>
+        <EntityType Name="KundeBestellung">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Bestellung" Relationship="Self.fk_kundeBestellung_bestellung" FromRole="kundeBestellung" ToRole="bestellung" />
+          <NavigationProperty Name="Kunde" Relationship="Self.fk_kundeBestellung_kunde" FromRole="kundeBestellung" ToRole="kunde" />
+        </EntityType>
+        <EntityType Name="Land">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AlleAdressen" Relationship="Self.fk_adresse_land" FromRole="land" ToRole="adresse" />
+        </EntityType>
+        <EntityType Name="Telefon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vorwahl" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LaenderVorwahl" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nummer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AlleTelefonKunden" Relationship="Self.fk_telefonKunde_telefon" FromRole="telefon" ToRole="telefonKunde" />
+        </EntityType>
+        <EntityType Name="TelefonKunde">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Kunde" Relationship="Self.fk_telefonKunde_kunde" FromRole="telefonKunde" ToRole="kunde" />
+          <NavigationProperty Name="Telefon" Relationship="Self.fk_telefonKunde_telefon" FromRole="telefonKunde" ToRole="telefon" />
+        </EntityType>
+        <Association Name="fk_adresse_land">
+          <End Role="land" Type="versandhausModel.Land" Multiplicity="1" />
+          <End Role="adresse" Type="versandhausModel.Adresse" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_adresseKunde_adresse">
+          <End Role="adresse" Type="versandhausModel.Adresse" Multiplicity="1" />
+          <End Role="adresseKunde" Type="versandhausModel.AdresseKunde" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_adresseKunde_kunde">
+          <End Role="kunde" Type="versandhausModel.Kunde" Multiplicity="1" />
+          <End Role="adresseKunde" Type="versandhausModel.AdresseKunde" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_artikel_artikelDetail">
+          <End Role="artikelDetail" Type="versandhausModel.ArtikelDetail" Multiplicity="1" />
+          <End Role="artikel" Type="versandhausModel.Artikel" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_artikelBestellung_artikel">
+          <End Role="artikel" Type="versandhausModel.Artikel" Multiplicity="1" />
+          <End Role="artikelBestellung" Type="versandhausModel.ArtikelBestellung" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_artikelBestellung_bestellung">
+          <End Role="bestellung" Type="versandhausModel.Bestellung" Multiplicity="1" />
+          <End Role="artikelBestellung" Type="versandhausModel.ArtikelBestellung" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_kundeBestellung_bestellung">
+          <End Role="bestellung" Type="versandhausModel.Bestellung" Multiplicity="1" />
+          <End Role="kundeBestellung" Type="versandhausModel.KundeBestellung" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_kundeBestellung_kunde">
+          <End Role="kunde" Type="versandhausModel.Kunde" Multiplicity="1" />
+          <End Role="kundeBestellung" Type="versandhausModel.KundeBestellung" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_telefonKunde_kunde">
+          <End Role="kunde" Type="versandhausModel.Kunde" Multiplicity="1" />
+          <End Role="telefonKunde" Type="versandhausModel.TelefonKunde" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_telefonKunde_telefon">
+          <End Role="telefon" Type="versandhausModel.Telefon" Multiplicity="1" />
+          <End Role="telefonKunde" Type="versandhausModel.TelefonKunde" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="versandhausEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlleAdressen" EntityType="versandhausModel.Adresse" />
+          <EntitySet Name="AlleAdresseKunden" EntityType="versandhausModel.AdresseKunde" />
+          <EntitySet Name="AlleArtikel" EntityType="versandhausModel.Artikel" />
+          <EntitySet Name="AlleArtikelBestellungen" EntityType="versandhausModel.ArtikelBestellung" />
+          <EntitySet Name="AlleArtikelDetails" EntityType="versandhausModel.ArtikelDetail" />
+          <EntitySet Name="AlleBestellungen" EntityType="versandhausModel.Bestellung" />
+          <EntitySet Name="AlleKunden" EntityType="versandhausModel.Kunde" />
+          <EntitySet Name="AlleKundeBestellungen" EntityType="versandhausModel.KundeBestellung" />
+          <EntitySet Name="AlleLaender" EntityType="versandhausModel.Land" />
+          <EntitySet Name="AlleTelefone" EntityType="versandhausModel.Telefon" />
+          <EntitySet Name="AlleTelefonKunden" EntityType="versandhausModel.TelefonKunde" />
+          <AssociationSet Name="fk_adresse_land" Association="Self.fk_adresse_land">
+            <End Role="land" EntitySet="AlleLaender" />
+            <End Role="adresse" EntitySet="AlleAdressen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adresseKunde_adresse" Association="Self.fk_adresseKunde_adresse">
+            <End Role="adresse" EntitySet="AlleAdressen" />
+            <End Role="adresseKunde" EntitySet="AlleAdresseKunden" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adresseKunde_kunde" Association="Self.fk_adresseKunde_kunde">
+            <End Role="kunde" EntitySet="AlleKunden" />
+            <End Role="adresseKunde" EntitySet="AlleAdresseKunden" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikel_artikelDetail" Association="Self.fk_artikel_artikelDetail">
+            <End Role="artikelDetail" EntitySet="AlleArtikelDetails" />
+            <End Role="artikel" EntitySet="AlleArtikel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikelBestellung_artikel" Association="Self.fk_artikelBestellung_artikel">
+            <End Role="artikel" EntitySet="AlleArtikel" />
+            <End Role="artikelBestellung" EntitySet="AlleArtikelBestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikelBestellung_bestellung" Association="Self.fk_artikelBestellung_bestellung">
+            <End Role="bestellung" EntitySet="AlleBestellungen" />
+            <End Role="artikelBestellung" EntitySet="AlleArtikelBestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_kundeBestellung_bestellung" Association="Self.fk_kundeBestellung_bestellung">
+            <End Role="bestellung" EntitySet="AlleBestellungen" />
+            <End Role="kundeBestellung" EntitySet="AlleKundeBestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_kundeBestellung_kunde" Association="Self.fk_kundeBestellung_kunde">
+            <End Role="kunde" EntitySet="AlleKunden" />
+            <End Role="kundeBestellung" EntitySet="AlleKundeBestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_telefonKunde_kunde" Association="Self.fk_telefonKunde_kunde">
+            <End Role="kunde" EntitySet="AlleKunden" />
+            <End Role="telefonKunde" EntitySet="AlleTelefonKunden" />
+          </AssociationSet>
+          <AssociationSet Name="fk_telefonKunde_telefon" Association="Self.fk_telefonKunde_telefon">
+            <End Role="telefon" EntitySet="AlleTelefone" />
+            <End Role="telefonKunde" EntitySet="AlleTelefonKunden" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="versandhausModelStoreContainer" CdmEntityContainer="versandhausEntities">
+          <EntitySetMapping Name="AlleAdressen">
+            <EntityTypeMapping TypeName="versandhausModel.Adresse">
+              <MappingFragment StoreEntitySet="adresse">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Ort" ColumnName="ort" />
+                <ScalarProperty Name="Plz" ColumnName="plz" />
+                <ScalarProperty Name="Strasse" ColumnName="strasse" />
+                <ScalarProperty Name="Stiege" ColumnName="stiege" />
+                <ScalarProperty Name="Stock" ColumnName="stock" />
+                <ScalarProperty Name="Nummer" ColumnName="nr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleAdresseKunden">
+            <EntityTypeMapping TypeName="versandhausModel.AdresseKunde">
+              <MappingFragment StoreEntitySet="adresseKunde">
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleArtikel">
+            <EntityTypeMapping TypeName="versandhausModel.Artikel">
+              <MappingFragment StoreEntitySet="artikel">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="bez" />
+                <ScalarProperty Name="Preis" ColumnName="preis" />
+                <ScalarProperty Name="ErstellDatum" ColumnName="erstellDatum" />
+                <ScalarProperty Name="ArtikelGeloescht" ColumnName="artikelGeloescht" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleArtikelBestellungen">
+            <EntityTypeMapping TypeName="versandhausModel.ArtikelBestellung">
+              <MappingFragment StoreEntitySet="artikelBestellung">
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleArtikelDetails">
+            <EntityTypeMapping TypeName="versandhausModel.ArtikelDetail">
+              <MappingFragment StoreEntitySet="artikelDetail">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Verpackungseinheit" ColumnName="verpackungseinheit" />
+                <ScalarProperty Name="Beschreibung" ColumnName="beschreibung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleBestellungen">
+            <EntityTypeMapping TypeName="versandhausModel.Bestellung">
+              <MappingFragment StoreEntitySet="bestellung">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Anzahl" ColumnName="anzahl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleKunden">
+            <EntityTypeMapping TypeName="versandhausModel.Kunde">
+              <MappingFragment StoreEntitySet="kunde">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Vorname" ColumnName="vorname" />
+                <ScalarProperty Name="Nachname" ColumnName="nachname" />
+                <ScalarProperty Name="Email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleKundeBestellungen">
+            <EntityTypeMapping TypeName="versandhausModel.KundeBestellung">
+              <MappingFragment StoreEntitySet="kundeBestellung">
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleLaender">
+            <EntityTypeMapping TypeName="versandhausModel.Land">
+              <MappingFragment StoreEntitySet="land">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleTelefone">
+            <EntityTypeMapping TypeName="versandhausModel.Telefon">
+              <MappingFragment StoreEntitySet="telefon">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Vorwahl" ColumnName="vorwahl" />
+                <ScalarProperty Name="LaenderVorwahl" ColumnName="laenderVorwahl" />
+                <ScalarProperty Name="Nummer" ColumnName="nummer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleTelefonKunden">
+            <EntityTypeMapping TypeName="versandhausModel.TelefonKunde">
+              <MappingFragment StoreEntitySet="telefonKunde">
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="fk_adresse_land" TypeName="versandhausModel.fk_adresse_land" StoreEntitySet="adresse">
+            <EndProperty Name="land">
+              <ScalarProperty Name="Id" ColumnName="land_id" />
+            </EndProperty>
+            <EndProperty Name="adresse">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_adresseKunde_adresse" TypeName="versandhausModel.fk_adresseKunde_adresse" StoreEntitySet="adresseKunde">
+            <EndProperty Name="adresse">
+              <ScalarProperty Name="Id" ColumnName="adresse_id" />
+            </EndProperty>
+            <EndProperty Name="adresseKunde">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_adresseKunde_kunde" TypeName="versandhausModel.fk_adresseKunde_kunde" StoreEntitySet="adresseKunde">
+            <EndProperty Name="kunde">
+              <ScalarProperty Name="Id" ColumnName="kunde_id" />
+            </EndProperty>
+            <EndProperty Name="adresseKunde">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_artikel_artikelDetail" TypeName="versandhausModel.fk_artikel_artikelDetail" StoreEntitySet="artikel">
+            <EndProperty Name="artikelDetail">
+              <ScalarProperty Name="Id" ColumnName="artikelDetail_id" />
+            </EndProperty>
+            <EndProperty Name="artikel">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_artikelBestellung_artikel" TypeName="versandhausModel.fk_artikelBestellung_artikel" StoreEntitySet="artikelBestellung">
+            <EndProperty Name="artikel">
+              <ScalarProperty Name="Id" ColumnName="artikel_id" />
+            </EndProperty>
+            <EndProperty Name="artikelBestellung">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_artikelBestellung_bestellung" TypeName="versandhausModel.fk_artikelBestellung_bestellung" StoreEntitySet="artikelBestellung">
+            <EndProperty Name="bestellung">
+              <ScalarProperty Name="Id" ColumnName="bestellung_id" />
+            </EndProperty>
+            <EndProperty Name="artikelBestellung">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_kundeBestellung_bestellung" TypeName="versandhausModel.fk_kundeBestellung_bestellung" StoreEntitySet="kundeBestellung">
+            <EndProperty Name="bestellung">
+              <ScalarProperty Name="Id" ColumnName="bestellung_id" />
+            </EndProperty>
+            <EndProperty Name="kundeBestellung">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_kundeBestellung_kunde" TypeName="versandhausModel.fk_kundeBestellung_kunde" StoreEntitySet="kundeBestellung">
+            <EndProperty Name="kunde">
+              <ScalarProperty Name="Id" ColumnName="kunde_id" />
+            </EndProperty>
+            <EndProperty Name="kundeBestellung">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_telefonKunde_kunde" TypeName="versandhausModel.fk_telefonKunde_kunde" StoreEntitySet="telefonKunde">
+            <EndProperty Name="kunde">
+              <ScalarProperty Name="Id" ColumnName="kunde_id" />
+            </EndProperty>
+            <EndProperty Name="telefonKunde">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_telefonKunde_telefon" TypeName="versandhausModel.fk_telefonKunde_telefon" StoreEntitySet="telefonKunde">
+            <EndProperty Name="telefon">
+              <ScalarProperty Name="Id" ColumnName="telefon_id" />
+            </EndProperty>
+            <EndProperty Name="telefonKunde">
+              <ScalarProperty Name="Id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

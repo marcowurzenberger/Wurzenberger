@@ -33,12 +33,8 @@ namespace BL_Versandhaus
         public DbSet<Bestellung> AlleBestellungen { get; set; }
         public DbSet<Kunde> AlleKunden { get; set; }
         public DbSet<KundeBestellung> AlleKundeBestellungen { get; set; }
-        public DbSet<LaenderVorwahl> AlleLaenderVorwahlen { get; set; }
         public DbSet<Land> AlleLaender { get; set; }
-        public DbSet<Ort> AlleOrte { get; set; }
-        public DbSet<Plz> AllePlz { get; set; }
         public DbSet<Telefon> AlleTelefone { get; set; }
         public DbSet<TelefonKunde> AlleTelefonKunden { get; set; }
-        public DbSet<Vorwahl> AlleVorwahlen { get; set; }
     }
 }
