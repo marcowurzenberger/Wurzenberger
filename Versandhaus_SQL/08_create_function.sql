@@ -1,15 +1,71 @@
 USE versandhaus;
 GO
-
+--------------------------------------------------------------
+-- Alle aktuellen Artikel auflisten (keine gelöschten Artikel)
+---------------------------------------------------------------
+CREATE VIEW AktuelleArtikelAnzeigen
+AS
+SELECT	a.bez,
+		a.preis,
+		ad.beschreibung,
+		ad.verpackungseinheit,
+		a.erstellDatum
+	FROM artikel AS a
+		JOIN artikelDetail AS ad
+			ON ad.id = a.artikelDetail_id
+	WHERE a.artikelGeloescht = 0;
+GO
+---------------------------------------------------------------
+-- Alle Kunden mit Telefonnummern anzeigen
+---------------------------------------------------------------
+CREATE VIEW KundenAnzeigen
+AS
+SELECT	k.vorname,
+		k.nachname,
+		k.email,
+		t.laenderVorwahl,
+		t.vorwahl,
+		t.nummer
+FROM kunde AS k
+	JOIN telefonKunde AS tk
+		ON tk.kunde_id = k.id
+	JOIN telefon AS t
+		ON t.id = tk.telefon_id;
+GO
+---------------------------------------------------------------
+--Alle Bestellungen mit dazugehörigen Kunden und Gesamtsumme
+---------------------------------------------------------------
+CREATE VIEW BestellungenAnzeigen
+AS
+SELECT	k.vorname,
+		k.nachname,
+		a.bez,
+		a.preis,
+		b.anzahl,
+		a.preis * b.anzahl AS Gesamtsumme
+FROM bestellung AS b
+	JOIN kundeBestellung AS kb
+		ON kb.bestellung_id = b.id
+	JOIN kunde AS k
+		ON k.id = kb.kunde_id
+	JOIN artikelBestellung AS ab
+		ON ab.bestellung_id = b.id
+	JOIN artikel AS a
+		ON a.id = ab.artikel_id;
+GO
+---------------------------------------------------------------
+-- Alle Adressen anzeigen, die sich in 
+-- einem vorgegebenen Land befinden
+---------------------------------------------------------------
 CREATE FUNCTION AdresseNachLandAnzeigen(@land NVARCHAR(50))
 	RETURNS @retTable TABLE (strasse NVARCHAR(50), stiege NVARCHAR(10), stock NVARCHAR(10), nr NVARCHAR(10))
 AS
 BEGIN
 	DECLARE @error INT = 0
 	
-	WHILE(@error = 0)
-	BEGIN
-		BEGIN TRY
+	--WHILE(@error = 0)
+	--BEGIN
+		--BEGIN TRY
 			
 			IF(LTRIM(RTRIM(@land)) = '') SET @error = -1;
 
@@ -18,46 +74,48 @@ BEGIN
 			FROM adresse AS a
 				JOIN land AS l
 					ON a.land_id = l.id
-			WHERE l.bez = @land
+			WHERE l.bez = @land;
 
 			SET @error = 1;
 			
-		END TRY
-		BEGIN CATCH
+		--END TRY
+		--BEGIN CATCH
 			--IF(@error = -1) PRINT 'Fehlercode ' + @error + ' Kein Land angegeben!';
 			--ELSE PRINT 'Unerwarteter Fehler aufgetreten!';
-		END CATCH
-	END
+		--END CATCH
+	--END
 	RETURN;
 END
 GO
 
-CREATE FUNCTION AktuelleArtikelAnzeigen()
-	RETURNS @retTable TABLE (bezeichnung NVARCHAR(50), preis DECIMAL(6,2), beschreibung NVARCHAR(MAX), verpackungseinheit NVARCHAR(5))
-AS
-BEGIN
-	DECLARE @rowCount INT = 0;
-	DECLARE @error INT = 0;
+--CREATE FUNCTION AktuelleArtikelAnzeigen()
+--	RETURNS @retTable TABLE (bezeichnung NVARCHAR(50), preis DECIMAL(6,2), beschreibung NVARCHAR(MAX), verpackungseinheit NVARCHAR(5))
+--AS
+--BEGIN
+--	DECLARE @rowCount INT = 0;
+--	DECLARE @error INT = 0;
 
-	INSERT INTO @retTable (bezeichnung, preis, beschreibung, verpackungseinheit)
-	SELECT	a.bez,
-			a.preis,
-			ad.beschreibung,
-			ad.verpackungseinheit
-	FROM artikel AS a
-		JOIN artikelDetail AS ad
-			ON ad.id = a.artikelDetail_id
-	WHERE a.artikelGeloescht = 0
-	ORDER BY a.erstellDatum DESC;
+--	INSERT INTO @retTable (bezeichnung, preis, beschreibung, verpackungseinheit)
+--	SELECT	a.bez,
+--			a.preis,
+--			ad.beschreibung,
+--			ad.verpackungseinheit
+--	FROM artikel AS a
+--		JOIN artikelDetail AS ad
+--			ON ad.id = a.artikelDetail_id
+--	WHERE a.artikelGeloescht = 0
+--	ORDER BY a.erstellDatum DESC;
 
-	SELECT @rowCount = COUNT(*) FROM @retTable;
+--	SELECT @rowCount = COUNT(*) FROM @retTable;
 
-	IF(@rowCount = 0) SET @error = -1;
-	SET @error = 1;
-	RETURN;
-END
-GO
-
+--	IF(@rowCount = 0) SET @error = -1;
+--	SET @error = 1;
+--	RETURN;
+--END
+--GO
+---------------------------------------------------------------
+-- Einen neuen Artikel anlegen
+---------------------------------------------------------------
 CREATE PROCEDURE NeuenArtikelAnlegen
 		@bezeichnung NVARCHAR(50),
 		@preis DECIMAL(6,2),
@@ -115,7 +173,9 @@ BEGIN
 	RETURN;
 END
 GO
-
+---------------------------------------------------------------
+-- Eine neue Adresse anlegen
+---------------------------------------------------------------
 CREATE PROCEDURE NeueAdresseAnlegen
 		@land NVARCHAR(50),
 		@ort NVARCHAR(50),
@@ -193,7 +253,9 @@ END
 RETURN; 
 END
 GO
-
+---------------------------------------------------------------
+-- Einen neuen Kunden anlegen
+---------------------------------------------------------------
 CREATE PROCEDURE NeuenKundenAnlegen
 		@vorname NVARCHAR(50),
 		@nachname NVARCHAR(50),
@@ -235,7 +297,10 @@ BEGIN
 RETURN;
 END
 GO
-
+---------------------------------------------------------------
+-- Eine neue Bestellung anhand von Artikelname, Kundennummer
+-- und Anzahl anlegen
+---------------------------------------------------------------
 CREATE PROCEDURE NeueBestellungAnlegen
 		@artikel NVARCHAR(50),
 		@kundenNr INT,
@@ -288,7 +353,9 @@ BEGIN
 	RETURN;
 END
 GO
-
+---------------------------------------------------------------
+-- Eine neue Telefonnummer für einen bestimmten Kunden anlegen
+---------------------------------------------------------------
 CREATE PROCEDURE NeueTelNummerFuerKundeAnlegen
 		@vorwahl NVARCHAR(10),
 		@laenderVorwahl NVARCHAR(10),
@@ -340,7 +407,9 @@ BEGIN
 	RETURN;
 END
 GO
-
+---------------------------------------------------------------
+-- Eine neue Adresse mit dazugehörigem Kunden anlegen
+---------------------------------------------------------------
 CREATE PROCEDURE NeueAdresseMitKundenAnlegen
 		@vorname NVARCHAR(50),
 		@nachname NVARCHAR(50),
@@ -413,7 +482,7 @@ BEGIN
 			--ELSE IF(@error = -2) PRINT 'Fehlercode ' + @error + '\t kein Nachname angegeben!';
 			--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t keine Email angegeben!';
 		END CATCH
-
+	END
 	RETURN;
 END
 GO

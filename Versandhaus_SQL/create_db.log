@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation 15:23:07,11" 
+"starting database creation 12:04:01,24" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 1> 2> 1>  
@@ -24,27 +24,7 @@ ECHO ist ausgeschaltet (OFF).
 1> 2>  
  
 "try creating function" 
-1> 2> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> Meldung '443', Ebene '16', Status '14', Server 'ADMIN-PC', Prozedur 'AdresseNachLandAnzeigen', Zeile 10
-Ungltige Verwendung eines BEGIN TRY-Operators mit Nebenwirkungen innerhalb
-einer Funktion.
-Meldung '443', Ebene '16', Status '14', Server 'ADMIN-PC', Prozedur 'AdresseNachLandAnzeigen', Zeile 23
-Ungltige Verwendung eines END TRY-Operators mit Nebenwirkungen innerhalb
-einer Funktion.
-Meldung '443', Ebene '16', Status '14', Server 'ADMIN-PC', Prozedur 'AdresseNachLandAnzeigen', Zeile 24
-Ungltige Verwendung eines BEGIN CATCH-Operators mit Nebenwirkungen innerhalb
-einer Funktion.
-Meldung '443', Ebene '16', Status '14', Server 'ADMIN-PC', Prozedur 'AdresseNachLandAnzeigen', Zeile 25
-Ungltige Verwendung eines PRINT-Operators mit Nebenwirkungen innerhalb einer
-Funktion.
-Meldung '443', Ebene '16', Status '14', Server 'ADMIN-PC', Prozedur 'AdresseNachLandAnzeigen', Zeile 26
-Ungltige Verwendung eines PRINT-Operators mit Nebenwirkungen innerhalb einer
-Funktion.
-Meldung '443', Ebene '16', Status '14', Server 'ADMIN-PC', Prozedur 'AdresseNachLandAnzeigen', Zeile 27
-Ungltige Verwendung eines END CATCH-Operators mit Nebenwirkungen innerhalb
-einer Funktion.
-1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 57> 58> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 57> 58> 59> 60> 61> 62> 63> 64> 65> 66> 67> 68> 69> 70> 71> 72> 73> 74> 75> 76> 77> 78> Meldung '207', Ebene '16', Status '1', Server 'ADMIN-PC', Prozedur 'NeueAdresseAnlegen', Zeile 51
-Ungltiger Spaltenname 'laenderVorwahl'.
-1>  
+1> 2> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 57> 58> 59> 60> 61> 62> 63> 64> 65> 66> 67> 68> 69> 70> 71> 72> 73> 74> 75> 76> 77> 78> 79> 80> 81> 82> 83> 84> 85> 86> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 57> 58> 59> 60> 61> 62> 63> 64> 65> 66> 67> 68> 69> 70> 71> 72> 73> 74> 75> 76> 77> 78> 79> 80> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 57> 58> 59> 60> 61> 62> 63> 64> 65> 66> 67> 68> 69> 70> 71> 72> 73> 74> 75> 76> 77> 78> 79> 1>  
  
 "try inserting values" 
 1> 2> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14>  
@@ -145,5 +125,5 @@ TelefonKunde anlegen - Zwischentabelle
 1>  
  
 . 
-"stopping database creation 15:23:08,16" 
+"stopping database creation 12:04:02,15" 
 . 
