@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="versandhausModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="artikel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bez" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="preis" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="erstellDatum" Type="datetime" Nullable="false" />
+          <Property Name="artikelDetail_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="artikelDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="verpackungseinheit" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="beschreibung" Type="nvarchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="artikelGeloescht">
+          <Key>
+            <PropertyRef Name="artikel_id" />
+          </Key>
+          <Property Name="artikel_id" Type="int" Nullable="false" />
+          <Property Name="erstellDatum" Type="datetime" />
+        </EntityType>
+        <Association Name="fk_artikel_artikelDetail">
+          <End Role="artikelDetail" Type="Self.artikelDetail" Multiplicity="1" />
+          <End Role="artikel" Type="Self.artikel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artikelDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="artikel">
+              <PropertyRef Name="artikelDetail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_artikelGeloescht_artikel">
+          <End Role="artikel" Type="Self.artikel" Multiplicity="1" />
+          <End Role="artikelGeloescht" Type="Self.artikelGeloescht" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="artikel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="artikelGeloescht">
+              <PropertyRef Name="artikel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="versandhausModelStoreContainer">
+          <EntitySet Name="artikel" EntityType="Self.artikel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="artikelDetail" EntityType="Self.artikelDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="artikelGeloescht" EntityType="Self.artikelGeloescht" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_artikel_artikelDetail" Association="Self.fk_artikel_artikelDetail">
+            <End Role="artikelDetail" EntitySet="artikelDetail" />
+            <End Role="artikel" EntitySet="artikel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikelGeloescht_artikel" Association="Self.fk_artikelGeloescht_artikel">
+            <End Role="artikel" EntitySet="artikel" />
+            <End Role="artikelGeloescht" EntitySet="artikelGeloescht" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="versandhausModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Preis" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="ErstellDatum" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ArtikelDetail" Relationship="Self.fk_artikel_artikelDetail" FromRole="artikel" ToRole="artikelDetail" />
+          <NavigationProperty Name="ArtikelGeloescht" Relationship="Self.fk_artikelGeloescht_artikel" FromRole="artikel" ToRole="artikelGeloescht" />
+        </EntityType>
+        <EntityType Name="ArtikelDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Verpackungseinheit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Beschreibung" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AlleArtikel" Relationship="Self.fk_artikel_artikelDetail" FromRole="artikelDetail" ToRole="artikel" />
+        </EntityType>
+        <EntityType Name="ArtikelGeloescht">
+          <Key>
+            <PropertyRef Name="Artikel_ID" />
+          </Key>
+          <Property Name="Artikel_ID" Type="Int32" Nullable="false" />
+          <Property Name="ErstellDatum" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Artikel" Relationship="Self.fk_artikelGeloescht_artikel" FromRole="artikelGeloescht" ToRole="artikel" />
+        </EntityType>
+        <Association Name="fk_artikel_artikelDetail">
+          <End Role="artikelDetail" Type="versandhausModel.ArtikelDetail" Multiplicity="1" />
+          <End Role="artikel" Type="versandhausModel.Artikel" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_artikelGeloescht_artikel">
+          <End Role="artikel" Type="versandhausModel.Artikel" Multiplicity="1" />
+          <End Role="artikelGeloescht" Type="versandhausModel.ArtikelGeloescht" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="artikel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="artikelGeloescht">
+              <PropertyRef Name="Artikel_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="versandhausEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlleArtikel" EntityType="versandhausModel.Artikel" />
+          <EntitySet Name="AlleArtikelDetails" EntityType="versandhausModel.ArtikelDetail" />
+          <EntitySet Name="AlleArtikelGeloescht" EntityType="versandhausModel.ArtikelGeloescht" />
+          <AssociationSet Name="fk_artikel_artikelDetail" Association="Self.fk_artikel_artikelDetail">
+            <End Role="artikelDetail" EntitySet="AlleArtikelDetails" />
+            <End Role="artikel" EntitySet="AlleArtikel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_artikelGeloescht_artikel" Association="Self.fk_artikelGeloescht_artikel">
+            <End Role="artikel" EntitySet="AlleArtikel" />
+            <End Role="artikelGeloescht" EntitySet="AlleArtikelGeloescht" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="versandhausModelStoreContainer" CdmEntityContainer="versandhausEntities">
+          <EntitySetMapping Name="AlleArtikel">
+            <EntityTypeMapping TypeName="versandhausModel.Artikel">
+              <MappingFragment StoreEntitySet="artikel">
+                <ScalarProperty Name="ID" ColumnName="id" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="bez" />
+                <ScalarProperty Name="Preis" ColumnName="preis" />
+                <ScalarProperty Name="ErstellDatum" ColumnName="erstellDatum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleArtikelDetails">
+            <EntityTypeMapping TypeName="versandhausModel.ArtikelDetail">
+              <MappingFragment StoreEntitySet="artikelDetail">
+                <ScalarProperty Name="ID" ColumnName="id" />
+                <ScalarProperty Name="Verpackungseinheit" ColumnName="verpackungseinheit" />
+                <ScalarProperty Name="Beschreibung" ColumnName="beschreibung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlleArtikelGeloescht">
+            <EntityTypeMapping TypeName="versandhausModel.ArtikelGeloescht">
+              <MappingFragment StoreEntitySet="artikelGeloescht">
+                <ScalarProperty Name="Artikel_ID" ColumnName="artikel_id" />
+                <ScalarProperty Name="ErstellDatum" ColumnName="erstellDatum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="fk_artikel_artikelDetail" TypeName="versandhausModel.fk_artikel_artikelDetail" StoreEntitySet="artikel">
+            <EndProperty Name="artikelDetail">
+              <ScalarProperty Name="ID" ColumnName="artikelDetail_id" />
+            </EndProperty>
+            <EndProperty Name="artikel">
+              <ScalarProperty Name="ID" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

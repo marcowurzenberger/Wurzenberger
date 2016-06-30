@@ -25,16 +25,8 @@ namespace BL_Versandhaus
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Adresse> AlleAdressen { get; set; }
-        public DbSet<AdresseKunde> AlleAdresseKunden { get; set; }
         public DbSet<Artikel> AlleArtikel { get; set; }
-        public DbSet<ArtikelBestellung> AlleArtikelBestellungen { get; set; }
         public DbSet<ArtikelDetail> AlleArtikelDetails { get; set; }
-        public DbSet<Bestellung> AlleBestellungen { get; set; }
-        public DbSet<Kunde> AlleKunden { get; set; }
-        public DbSet<KundeBestellung> AlleKundeBestellungen { get; set; }
-        public DbSet<Land> AlleLaender { get; set; }
-        public DbSet<Telefon> AlleTelefone { get; set; }
-        public DbSet<TelefonKunde> AlleTelefonKunden { get; set; }
+        public DbSet<ArtikelGeloescht> AlleArtikelGeloescht { get; set; }
     }
 }

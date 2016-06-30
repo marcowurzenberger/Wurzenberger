@@ -21,6 +21,8 @@ namespace UI_Versandhaus
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/sb-admin.css"));
         }
     }
 }

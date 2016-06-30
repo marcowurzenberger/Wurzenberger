@@ -49,46 +49,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VersandhausDB.Context.cs">
+    <Compile Include="Versandhaus.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VersandhausDB.Context.tt</DependentUpon>
+      <DependentUpon>Versandhaus.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="VersandhausDB.cs">
+    <Compile Include="Versandhaus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VersandhausDB.tt</DependentUpon>
+      <DependentUpon>Versandhaus.tt</DependentUpon>
     </Compile>
-    <Compile Include="VersandhausDB.Designer.cs">
+    <Compile Include="Versandhaus.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VersandhausDB.edmx</DependentUpon>
+      <DependentUpon>Versandhaus.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="VersandhausDB.edmx">
+    <EntityDeploy Include="Versandhaus.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VersandhausDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>Versandhaus.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="VersandhausDB.edmx.diagram">
-      <DependentUpon>VersandhausDB.edmx</DependentUpon>
+    <None Include="Versandhaus.edmx.diagram">
+      <DependentUpon>Versandhaus.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="VersandhausDB.Context.tt">
+    <Content Include="Versandhaus.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VersandhausDB.edmx</DependentUpon>
-      <LastGenOutput>VersandhausDB.Context.cs</LastGenOutput>
+      <DependentUpon>Versandhaus.edmx</DependentUpon>
+      <LastGenOutput>Versandhaus.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="VersandhausDB.tt">
+    <Content Include="Versandhaus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VersandhausDB.edmx</DependentUpon>
-      <LastGenOutput>VersandhausDB.cs</LastGenOutput>
+      <DependentUpon>Versandhaus.edmx</DependentUpon>
+      <LastGenOutput>Versandhaus.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
