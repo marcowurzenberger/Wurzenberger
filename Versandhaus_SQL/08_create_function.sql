@@ -13,7 +13,9 @@ SELECT	a.bez,
 	FROM artikel AS a
 		JOIN artikelDetail AS ad
 			ON ad.id = a.artikelDetail_id
-	WHERE a.artikelGeloescht = 0;
+		LEFT JOIN artikelGeloescht AS ag
+			ON ag.artikel_id = a.id
+	WHERE NOT a.id = ag.artikel_id;
 GO
 ---------------------------------------------------------------
 -- Alle Kunden mit Telefonnummern anzeigen
@@ -87,7 +89,7 @@ BEGIN
 	WHILE(@error = 0)
 	BEGIN
 		BEGIN TRY
-			BEGIN TRANSACTION t_1
+			BEGIN TRANSACTION t_1;
 			IF(RTRIM(LTRIM(@bezeichnung)) = '') 
 			BEGIN
 				SET @error = -1;
@@ -118,7 +120,7 @@ BEGIN
 			VALUES(@bezeichnung, @preis, @artikelDetail_id);
 
 			SET @error = 1;
-			COMMIT TRANSACTION t_1
+			COMMIT TRANSACTION t_1;
 		END TRY
 
 		BEGIN CATCH
@@ -126,7 +128,7 @@ BEGIN
 			--ELSE IF(@error = -2) PRINT 'Fehlercode ' + @error + '\t keinen Preis angegeben!';
 			--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t keine Verpackungseinheit angegeben!';
 			--ELSE IF(@error = -4) PRINT 'Fehlercode ' + @error + '\t keine Beschreibung angegeben!';
-			ROLLBACK TRANSACTION t_1
+			ROLLBACK TRANSACTION t_1;
 		END CATCH
 
 	END
@@ -153,6 +155,7 @@ BEGIN
 WHILE( @error = 0 )
 BEGIN
 	BEGIN TRY
+		BEGIN TRANSACTION t_2;
 		IF(RTRIM(LTRIM(@land)) = '')
 		BEGIN
 			SET @error = -1;
@@ -201,6 +204,7 @@ BEGIN
 		END
 
 		SET @error = 1;
+		COMMIT TRANSACTION t_2;
 	END TRY
 	BEGIN CATCH
 		--IF(@error = -1) PRINT 'Fehlercode ' + @error + '\t kein Land angegeben!';
@@ -208,6 +212,7 @@ BEGIN
 		--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t kein PLZ angegeben!';
 		--ELSE IF(@error = -4) PRINT 'Fehlercode ' + @error + '\t keine Strasse angegeben!';
 		--ELSE IF(@error = -5) PRINT 'Fehlercode ' + @error + '\t keine Nummer angegeben!';
+		ROLLBACK TRANSACTION t_2;
 	END CATCH
 END
 RETURN; 
@@ -228,7 +233,7 @@ BEGIN
 	BEGIN
 
 		BEGIN TRY
-			
+		BEGIN TRANSACTION t_3;
 			IF(LTRIM(RTRIM(@vorname)) = '')
 			BEGIN
 				SET @error = -1;
@@ -247,11 +252,13 @@ BEGIN
 
 			INSERT INTO kunde(vorname, nachname, email) VALUES(@vorname, @nachname, @email);
 			SET @error = 1;
+			COMMIT TRANSACTION t_3;
 		END TRY
 		BEGIN CATCH
 			--IF(@error = -1) PRINT 'Fehlercode ' + @error + '\t kein Vorname angegeben!';
 			--ELSE IF(@error = -2) PRINT 'Fehlercode ' + @error + '\t kein Nachname angegeben!';
 			--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t keine Email angegeben!';
+			ROLLBACK TRANSACTION t_3;
 		END CATCH
 	END
 RETURN;
@@ -274,6 +281,7 @@ BEGIN
 	WHILE(@error = 0)
 	BEGIN
 		BEGIN TRY
+		BEGIN TRANSACTION t_4;
 
 		IF(LTRIM(RTRIM(@artikel)) = '')
 		BEGIN
@@ -301,12 +309,16 @@ BEGIN
 		WHERE bez = @artikel;
 
 		INSERT INTO artikelBestellung(artikel_id, bestellung_id) VALUES(@artikelId, @bestellungId);
+		
+		SET @error = 1;
+		COMMIT TRANSACTION t_4;
 		END TRY
 
 		BEGIN CATCH
 			--IF(@error = -1) PRINT 'Fehlercode ' + @error + '\t kein Artikel angegeben!';
 			--ELSE IF(@error = -2) PRINT 'Fehlercode ' + @error + '\t keine Kundennummer angegeben!';
 			--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t keine Anzahl angegeben!';
+			ROLLBACK TRANSACTION t_4;
 		END CATCH
 
 	END
@@ -329,7 +341,8 @@ BEGIN
 	WHILE(@error = 0)
 	BEGIN
 		BEGIN TRY
-		
+		BEGIN TRANSACTION t_5;
+
 		IF(LTRIM(RTRIM(@vorwahl)) = '')
 		BEGIN
 			SET @error = -1;
@@ -355,6 +368,9 @@ BEGIN
 		SET @telId = SCOPE_IDENTITY();
 
 		INSERT INTO telefonKunde(kunde_id, telefon_id) VALUES(@kundenNr, @telId);
+
+		SET @error = 1;
+		COMMIT TRANSACTION t_5;
 		END TRY
 
 		BEGIN CATCH
@@ -362,6 +378,7 @@ BEGIN
 			--ELSE IF(@error = -2) PRINT 'Fehlercode ' + @error + '\t keine Laendervorwahl angegeben!';
 			--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t keine Nummer angegeben!';
 			--ELSE IF(@error = -4) PRINT 'Fehlercode ' + @error + '\t keine Kundennummer angegeben!';
+			ROLLBACK TRANSACTION t_5;
 		END CATCH
 	END
 	RETURN;
@@ -391,7 +408,8 @@ BEGIN
 	BEGIN
 
 		BEGIN TRY
-			
+			BEGIN TRANSACTION t_6;
+
 			IF(LTRIM(RTRIM(@vorname)) = '')
 			BEGIN
 				SET @error = -1;
@@ -436,13 +454,87 @@ BEGIN
 
 			INSERT INTO kunde(vorname, nachname, email) VALUES(@vorname, @nachname, @email);
 			SET @error = 1;
+			COMMIT TRANSACTION t_6;
 		END TRY
 		BEGIN CATCH
 			--IF(@error = -1) PRINT 'Fehlercode ' + @error + '\t kein Vorname angegeben!';
 			--ELSE IF(@error = -2) PRINT 'Fehlercode ' + @error + '\t kein Nachname angegeben!';
 			--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t keine Email angegeben!';
+			ROLLBACK TRANSACTION t_6;
 		END CATCH
 	END
 	RETURN;
 END
 GO
+---------------------------------------------------------------
+-- Einen Artikel als geloescht eintragen
+---------------------------------------------------------------
+CREATE PROCEDURE ArtikelLoeschenId
+		@artikelId INT
+AS
+BEGIN
+	DECLARE @error INT = 0;
+
+	WHILE(@error = 0)
+	BEGIN
+		
+		BEGIN TRY
+		BEGIN TRANSACTION t_7;
+			IF(@artikelId = 0)
+			BEGIN
+				SET @error = -1;
+				BREAK;
+			END
+
+			INSERT INTO artikelGeloescht(artikel_id) VALUES(@artikelId);
+
+			SET @error = 1;
+			COMMIT TRANSACTION t_7;
+		END TRY
+
+		BEGIN CATCH
+			--IF(@error = -1) PRINT 'Fehlercode ' + @error + '\t keine ArtikelID angegeben!';
+			ROLLBACK TRANSACTION t_7;
+		END CATCH
+	END
+RETURN;
+END
+GO
+---------------------------------------------------------------
+-- Eine Bestellung als storniert anlegen
+---------------------------------------------------------------
+CREATE PROCEDURE BestellungStornieren
+		@bestellungId INT
+AS
+BEGIN
+	DECLARE @error INT = 0;
+
+	WHILE(@error = 0)
+	BEGIN
+
+		BEGIN TRY
+			BEGIN TRANSACTION t_8
+
+			IF(@bestellungId = 0)
+			BEGIN
+				SET @error = -1;
+				BREAK;
+			END
+
+			INSERT INTO bestellungStorniert(bestellung_id) VALUES(@bestellungId);
+
+			SET @error = 1;
+			COMMIT TRANSACTION t_8
+		END TRY
+		BEGIN CATCH
+			--IF(@error = -1) PRINT 'Fehlercode ' + @error + '\t keine BestellungsID angegeben!';
+			ROLLBACK TRANSACTION t_8
+		END CATCH
+
+	END
+RETURN;
+END
+GO
+---------------------------------------------------------------
+-- Einen Artikel anhand der Bezeichnung loeschen
+---------------------------------------------------------------

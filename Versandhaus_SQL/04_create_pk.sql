@@ -22,3 +22,7 @@ ALTER TABLE telefonKunde ADD CONSTRAINT pk_telefonKunde PRIMARY KEY (id);
 GO
 ALTER TABLE adresseKunde ADD CONSTRAINT pk_adresseKunde PRIMARY KEY (id);
 GO
+ALTER TABLE artikelGeloescht ADD CONSTRAINT pk_artikelGeloescht PRIMARY KEY (artikel_id);
+GO
+ALTER TABLE bestellungStorniert ADD CONSTRAINT pk_bestellungStorniert PRIMARY KEY (bestellung_id);
+GO

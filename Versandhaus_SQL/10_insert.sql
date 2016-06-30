@@ -72,11 +72,11 @@ GO
 PRINT '';
 PRINT 'Artikel anlegen';
 PRINT '';
-INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Weber Grill', 199.90, 1, 0);
-INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Wiener Zucker', 2.50, 2, 0);
-INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Meinl Zuckerl', 50.00, 3, 0);
-INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Eier', 0.33, 4, 0);
-INSERT INTO artikel(bez, preis, artikelDetail_id, artikelGeloescht) VALUES('Huelsinger', 20.00, 5, 0);
+INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Weber Grill', 199.90, 1);
+INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Wiener Zucker', 2.50, 2);
+INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Meinl Zuckerl', 50.00, 3);
+INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Eier', 0.33, 4);
+INSERT INTO artikel(bez, preis, artikelDetail_id) VALUES('Huelsinger', 20.00, 5);
 
 GO
 

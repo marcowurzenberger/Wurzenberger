@@ -50,3 +50,13 @@ ALTER TABLE adresseKunde ADD CONSTRAINT fk_adresseKunde_kunde
 FOREIGN KEY( kunde_id )
 REFERENCES kunde(id);
 GO
+
+ALTER TABLE artikelGeloescht ADD CONSTRAINT fk_artikelGeloescht_artikel
+FOREIGN KEY( artikel_id )
+REFERENCES artikel(id);
+GO
+
+ALTER TABLE bestellungStorniert ADD CONSTRAINT fk_bestellungStorniert_bestellung
+FOREIGN KEY( bestellung_id )
+REFERENCES bestellung(id);
+GO

@@ -6,8 +6,7 @@ CREATE TABLE artikel(
 	bez NVARCHAR(50) NOT NULL,
 	preis DECIMAL(6,2) NOT NULL,
 	erstellDatum DATETIME NOT NULL DEFAULT GETDATE(),
-	artikelDetail_id INT NOT NULL,
-	artikelGeloescht BIT NOT NULL
+	artikelDetail_id INT NOT NULL
 );
 GO
 CREATE TABLE bestellung(
@@ -75,3 +74,12 @@ CREATE TABLE adresseKunde(
 	adresse_id INT NOT NULL
 );
 GO
+CREATE TABLE artikelGeloescht(
+	artikel_id INT NOT NULL,
+	erstellDatum DATETIME DEFAULT GETDATE()
+);
+GO
+CREATE TABLE bestellungStorniert(
+	bestellung_id INT NOT NULL,
+	erstellDatum DATETIME DEFAULT GETDATE()
+);
