@@ -48,7 +48,7 @@ GO
 CREATE TABLE artikelDetail(
 	id INT IDENTITY NOT NULL,
 	verpackungseinheit NVARCHAR(5) NOT NULL,
-	beschreibung NVARCHAR(MAX) NOT NULL
+	beschreibung NVARCHAR(4000) NOT NULL
 );
 GO
 CREATE TABLE artikelBestellung(

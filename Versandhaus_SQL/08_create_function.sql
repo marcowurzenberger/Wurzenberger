@@ -61,58 +61,16 @@ CREATE FUNCTION AdresseNachLandAnzeigen(@land NVARCHAR(50))
 	RETURNS @retTable TABLE (strasse NVARCHAR(50), stiege NVARCHAR(10), stock NVARCHAR(10), nr NVARCHAR(10))
 AS
 BEGIN
-	DECLARE @error INT = 0
-	
-	--WHILE(@error = 0)
-	--BEGIN
-		--BEGIN TRY
-			
-			IF(LTRIM(RTRIM(@land)) = '') SET @error = -1;
-
 			INSERT INTO @retTable(strasse, stiege, stock, nr)
 			SELECT	a.strasse, a.stiege, a.stock, a.nr
 			FROM adresse AS a
 				JOIN land AS l
 					ON a.land_id = l.id
 			WHERE l.bez = @land;
-
-			SET @error = 1;
-			
-		--END TRY
-		--BEGIN CATCH
-			--IF(@error = -1) PRINT 'Fehlercode ' + @error + ' Kein Land angegeben!';
-			--ELSE PRINT 'Unerwarteter Fehler aufgetreten!';
-		--END CATCH
-	--END
 	RETURN;
 END
 GO
 
---CREATE FUNCTION AktuelleArtikelAnzeigen()
---	RETURNS @retTable TABLE (bezeichnung NVARCHAR(50), preis DECIMAL(6,2), beschreibung NVARCHAR(MAX), verpackungseinheit NVARCHAR(5))
---AS
---BEGIN
---	DECLARE @rowCount INT = 0;
---	DECLARE @error INT = 0;
-
---	INSERT INTO @retTable (bezeichnung, preis, beschreibung, verpackungseinheit)
---	SELECT	a.bez,
---			a.preis,
---			ad.beschreibung,
---			ad.verpackungseinheit
---	FROM artikel AS a
---		JOIN artikelDetail AS ad
---			ON ad.id = a.artikelDetail_id
---	WHERE a.artikelGeloescht = 0
---	ORDER BY a.erstellDatum DESC;
-
---	SELECT @rowCount = COUNT(*) FROM @retTable;
-
---	IF(@rowCount = 0) SET @error = -1;
---	SET @error = 1;
---	RETURN;
---END
---GO
 ---------------------------------------------------------------
 -- Einen neuen Artikel anlegen
 ---------------------------------------------------------------
@@ -120,7 +78,7 @@ CREATE PROCEDURE NeuenArtikelAnlegen
 		@bezeichnung NVARCHAR(50),
 		@preis DECIMAL(6,2),
 		@verpackungseinheit NVARCHAR(5),
-		@beschreibung NVARCHAR(MAX)
+		@beschreibung NVARCHAR(4000)
 AS
 BEGIN
 	DECLARE @error INT = 0;
@@ -129,7 +87,7 @@ BEGIN
 	WHILE(@error = 0)
 	BEGIN
 		BEGIN TRY
-		
+			BEGIN TRANSACTION t_1
 			IF(RTRIM(LTRIM(@bezeichnung)) = '') 
 			BEGIN
 				SET @error = -1;
@@ -160,6 +118,7 @@ BEGIN
 			VALUES(@bezeichnung, @preis, @artikelDetail_id);
 
 			SET @error = 1;
+			COMMIT TRANSACTION t_1
 		END TRY
 
 		BEGIN CATCH
@@ -167,6 +126,7 @@ BEGIN
 			--ELSE IF(@error = -2) PRINT 'Fehlercode ' + @error + '\t keinen Preis angegeben!';
 			--ELSE IF(@error = -3) PRINT 'Fehlercode ' + @error + '\t keine Verpackungseinheit angegeben!';
 			--ELSE IF(@error = -4) PRINT 'Fehlercode ' + @error + '\t keine Beschreibung angegeben!';
+			ROLLBACK TRANSACTION t_1
 		END CATCH
 
 	END
