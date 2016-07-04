@@ -4,7 +4,7 @@ GO
 CREATE TABLE artikel(
 	id INT IDENTITY NOT NULL,
 	bez NVARCHAR(50) NOT NULL,
-	preis DECIMAL(6,2) NOT NULL,
+	preis MONEY NOT NULL,
 	erstellDatum DATETIME NOT NULL DEFAULT GETDATE(),
 	artikelDetail_id INT NOT NULL
 );
