@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation 11:09:17,85" 
+"starting database creation 14:23:27,77" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 1> 2> 1>  
@@ -125,5 +125,5 @@ TelefonKunde anlegen - Zwischentabelle
 1>  
  
 . 
-"stopping database creation 11:09:19,00" 
+"stopping database creation 14:23:28,89" 
 . 
