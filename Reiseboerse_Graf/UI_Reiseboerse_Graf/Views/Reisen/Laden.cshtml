@@ -1,0 +1,118 @@
+﻿@model UI_Reiseboerse_Graf.Models.ReiseLadenModel
+
+@{
+    ViewBag.Title = "Reisen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="container">   
+    <!--FilternView muss hier eingebunden werden als partialView-->
+    <div class="col-xs-2">
+        @Html.Partial("_Filter", Model.Filter)
+    </div>
+
+
+
+
+
+    <div class="col-xs-9 col-xs-offset-1">
+     
+        @if (Model.Reisen == null||Model.Reisen.Count()<=0)
+        {
+            <h4 class="suchergebnis">Keine Suchergebnisse vorhanden <br /> Verändern Sie Ihre Suchkriterien</h4>
+        }
+        else
+        {
+            foreach (var item in Model.Reisen)
+            {
+            <div class="row reise">
+                <div class="col-md-2 col-xs-6">
+                    <img src="http://www.skwei.de/skwei2014/wp-content/uploads/2014/07/erde3.gif" class="img-responsive" />
+                    <div class="carousel-caption bildschrift">
+                        <text>ab € </text>@Html.DisplayFor(modelItem => item.Preis)
+                    </div>
+                    <!--Restplätze aus der Datenbank auslesen-->
+                    <div class="Restplätze">
+                        <span class="badge">@Html.DisplayFor(modelItem => item.Restplätze)</span> Restplätze
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-6 details">
+                    <ul class="list-unstyled list">
+                        <li><img src="~/Content/bilder/themify_e691(1)_32.png" />@Html.DisplayFor(modelItem => item.Titel)</li>
+                        <li class="Kommentar"><img src="~/Content/bilder/FontAwesome_f017(6)_32.png" />Buchen Sie bis: @Html.DisplayFor(modelItem => item.Anmeldefrist)</li>
+                        <li><img src="~/Content/bilder/themify_e6a9(3)_32.png" /> @Html.DisplayFor(modelItem => item.Ort), @Html.DisplayFor(modelItem=>item.Land)</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-xs-6 details">
+                    <ul class="list-inline list-unstyled list">
+                        <li><img src="~/Content/bilder/FontAwesome_f015(0)_32.png" /> @Html.DisplayFor(modelItem => item.Unterkunft)</li>
+                        <li><img src="~/Content/bilder/FontAwesome_f133(0)_32.png" /> @Html.DisplayFor(modelItem => item.Beginndatum)<text>-</text>@Html.DisplayFor(modelItem => item.Enddatum)</li>
+                        <li><img src="~/Content/bilder/FontAwesome_f0f5(0)_32.png" /> @Html.DisplayFor(modelItem => item.Verpflegung)</li>
+                    </ul>
+                </div>
+                <div class="col-md-1 col-xs-6 details">
+                    <!--Wenn der Benutzer eingeloogt, dann wird hier der Merkenbutton eingezeigt-->
+                    <!--Link zu den Details der entsprechenden Reise-->
+                        @Html.ActionLink("Details", "Anzeigen", new { id = item.ID }, new { @class = "btn buttonind platziert" })
+                </div>
+            </div>
+            <br />
+        }
+        }
+    </div>
+    @section   scripts {
+        @*<script src="~/Scripts/nouislider.min.js"></script>*@
+
+        <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker6').datetimepicker({
+                            format: "DD.MM.YYYY"
+                        });
+                        $('#datetimepicker7').datetimepicker({
+                            format: "DD.MM.YYYY",
+                            useCurrent: false //Important! See issue #1075
+                        });
+                        $("#datetimepicker6").on("dp.change", function (e) {
+                            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                        });
+                        $("#datetimepicker7").on("dp.change", function (e) {
+                            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                        });
+
+                    var slider = document.getElementById('preis');
+
+                    noUiSlider.create(slider, {
+                        start: [0, 1000],
+                        range: {
+                            'min': [0],
+                            'max': [1000]
+                        },
+                        connect: true,
+                        pips: {
+                            mode: 'steps',
+                            density: 5
+                        },
+                        step: 200,
+                        margin: 200
+                    });
+
+                var preisMin = document.getElementById("PreisMin"),
+               preisMax = document.getElementById("PreisMax");
+
+                slider.noUiSlider.on('update', function (values, handle) {
+                    if (handle) {
+                        preisMax.value = parseInt(values[handle]);
+                        } else {
+                        preisMin.value = parseInt(values[handle]);
+                        }
+                    });
+
+                    var preisArray = slider.noUiSlider.get();
+                preisMin.value = parseInt(preisArray[0]);
+                preisMax.value = parseInt(preisArray[1]);
+
+            });
+
+        </script>
+    }
+</div>

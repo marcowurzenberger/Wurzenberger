@@ -1,0 +1,62 @@
+﻿@model UI_Reiseboerse_Graf.Models.ReisedetailModel
+
+@{
+    ViewBag.Title = "Anzeigen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row reise1">
+        <div class="col-xs-4 reisedetailbild">
+            <img src="~/Content/bilder/slidertestimg/2_reise_test.jpg" class="img-responsive img-rounded"/>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="Schriftartblau">@Html.DisplayFor(model => model.Titel), @Html.DisplayFor(model => model.Ort)</h4> 
+            @Html.DisplayFor(model => model.Beschreibung)
+            <br />
+           
+        </div>
+        <div class="col-xs-4">
+            <div class="termin">Aktueller Termin: @Html.DisplayFor(model => model.Beginndatum) - @Html.DisplayFor(model => model.Enddatum)</div>
+            @using (Html.BeginForm("Hinzufuegen", "Buchungen",FormMethod.Post,new { @class="zentriert"}))
+            {
+                <table class="table table-condensed">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => x.Preis_Erwachsene) <br />ab 14 Jahre                         
+                        </th>
+                        <td>
+                            € @Html.DisplayFor(x => x.Preis_Erwachsene)
+                        </td>
+                        <td>
+                            <input type="number" min="0" max="@Model.Restplätze" name="Anzahl_Erwachsene"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => x.Preis_Kind)<br />bis 13 Jahre
+                        </th>
+                        <td>
+                            € @Html.DisplayFor(x => x.Preis_Kind)
+                        </td>
+                        <td>
+                            <!--Es müsste hier noch die max-Zahl auf Restplätze minus die Anzahl der Plätze Erwachsene-->
+                            <input type="number" min="0" max="@Model.Restplätze" name="Anzahl_Kinder"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="center"><input type="submit" value="Buchen" class="btn buttonind" /></td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        @Html.Action("UnterkunftAnzeigen", new { id = Model.Unterkunft_ID })
+    </div>
+</div>
+@*<p>
+    @Html.ActionLink("Zurück zur Reiseliste", "Laden")
+</p>*@

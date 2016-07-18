@@ -1,0 +1,101 @@
+﻿@model UI_Reiseboerse_Graf.Models.FilterModel
+
+@{
+    ViewBag.Title = "Filter";
+
+}
+
+@using (Html.BeginForm("Laden", "Reisen", FormMethod.Post))
+{
+    <div class="container">
+        <div class="col-xs-2 filter">
+            <div class="Schriftartblau">Filter</div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    @Html.LabelFor(model => model.Land)
+                    @Html.DropDownListFor(model => model.Land, new SelectList(Model.Land, "land_ID", "landName"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    @Html.LabelFor(model => model.Ort)
+                    @Html.DropDownListFor(model => model.Ort, new SelectList(Model.Ort, "Id", "Bezeichnung"), new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.HotelKategorie)<br />
+                    <div class="acidjs-rating-stars">
+                        <form>
+                            <input type="radio" name="group-2" id="group-2-0" value="@Model.HotelKategorie=5" /><label for="group-2-0"></label>
+                            <input type="radio" name="group-2" id="group-2-1" value="@Model.HotelKategorie=4" /><label for="group-2-1"></label>
+                            <input type="radio" name="group-2" id="group-2-2" value="@Model.HotelKategorie=3" /><label for="group-2-2"></label>
+                            <input type="radio" name="group-2" id="group-2-3" value="@Model.HotelKategorie=2" /><label for="group-2-3"></label>
+                            <input type="radio" name="group-2" id="group-2-4" value="@Model.HotelKategorie=1" /><label for="group-2-4"></label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Kategorie)
+                    @Html.DropDownListFor(model => model.Kategorie, new SelectList(Model.Kategorie, "Id", "Bezeichnung"), new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Label("Preis")
+                   <div class="noUi-base noUi-background noUi-horizontal noUi-target" id="preis">
+                       <div class="noUi-origin">
+                       </div>
+                   </div>
+                    <input type="hidden" id="preis-min" value="" name="preisMin"/>
+                    <input type="hidden" id="preis-max" value="" name="preisMax"/>
+                </div>
+            </div>
+
+            <br /><br />
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    @Html.LabelFor(model => model.Verpflegung)
+                    @Html.DropDownListFor(model => model.Verpflegung, new SelectList(Model.Verpflegung, "Id", "Bezeichnung"), new { @class = "form-control" }) <br />
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    @Html.LabelFor(model => model.Startdatum)
+                    <div class='input-group date' id='datetimepicker6'>
+                        <input type='text' class="form-control" value="@Model.Startdatum" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    @Html.LabelFor(model => model.Enddatum)
+                    <div class='input-group date' id='datetimepicker7'>
+                        <input type='text' class="form-control" value="@Model.Enddatum" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="divcenter">
+                <input class="btn button" type="submit" value="Filtern" />
+            </div>          
+
+        </div>
+    </div>
+}

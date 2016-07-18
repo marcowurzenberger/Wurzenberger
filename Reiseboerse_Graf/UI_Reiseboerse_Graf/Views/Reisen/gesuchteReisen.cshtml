@@ -1,0 +1,112 @@
+﻿@model IEnumerable<UI_Reiseboerse_Graf.Models.ReiseModel>
+
+@{
+    ViewBag.Title = "gesuchteReisen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>gesuchteReisen</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Beginndatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enddatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Verpflegung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ort_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Land_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategorie_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hotelkategorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Verpflegungs_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unterkunft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anmeldefrist)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restplätze)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Beginndatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enddatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verpflegung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ort_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Land_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategorie_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hotelkategorie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verpflegungs_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unterkunft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Anmeldefrist)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restplätze)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

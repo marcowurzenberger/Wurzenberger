@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c3a83046ab49469bbf3fd7ea3965a713" Name="Diagram1">
+        <EntityTypeShape EntityType="reisebueroModel.Adresse" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Benutzer" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Bewertung" Width="1.5" PointX="12" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Bild" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Bild_Reise" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Bild_Unterkunft" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Buchung" Width="1.5" PointX="9.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Kunde" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Land" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Mitarbeiter" Width="1.5" PointX="7.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Ort" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Reise" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Reisedetail" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Unterkunft" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="reisebueroModel.Verpflegung" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="reisebueroModel.FK_Adresse_Land" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Adresse_Ort" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Benutzer_Adresse" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Kunde_Benutzer" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Mitarbeiter_Benutzer" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Bewertung_Buchung" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Bild_Reise_Bild" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Bild_Unterkunft_Bild" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Bild_Reise_Reise" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Bild_Unterkunft_Unterkunft" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Buchung_Kunde" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Buchung_Reisedetail" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Kunde_Land" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Reise_Unterkunft" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Reisedetail_Reise" ManuallyRouted="false" />
+        <AssociationConnector Association="reisebueroModel.FK_Unterkunft_Verpflegung" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
