@@ -1193,7 +1193,7 @@ $.extend($.validator, {
 // deprecated, use $.validator.format instead
 $.format = $.validator.format;
 
-}(jQuery));
+}(jquery));
 
 // ajax mode: abort
 // usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
@@ -1227,7 +1227,7 @@ $.format = $.validator.format;
 			return ajax.apply(this, arguments);
 		};
 	}
-}(jQuery));
+}(jquery));
 
 // provides delegate(type: String, delegate: Selector, handler: Callback) plugin for easier event delegation
 // handler is only called when $(event.target).is(delegate), in the scope of the jquery-object for event.target
@@ -1242,4 +1242,4 @@ $.format = $.validator.format;
 			});
 		}
 	});
-}(jQuery));
+}(jquery));

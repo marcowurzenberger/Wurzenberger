@@ -32,13 +32,7 @@ namespace UI_Reiseboerse_Graf.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel lm)
         {
-            reisebueroEntities daten = new reisebueroEntities();
-            Benutzer user = new Benutzer();
-            user = daten.Benutzer.Where(x => x.email == lm.Email).FirstOrDefault();
-            string pw = GetPasswort(user.passwort);
-
-
-            if (lm.Email == user.email && lm.Passwort == pw)
+            if (BenutzerVerwaltung.Anmelden(lm.Email, lm.Passwort))
             {
                 if (lm.AngemeldetBleiben)
                 {
@@ -52,6 +46,7 @@ namespace UI_Reiseboerse_Graf.Controllers
 
             return RedirectToAction("Laden", "Reisen");
         }
+
         [Authorize]
         [HttpGet]
         public ActionResult Logout()
@@ -89,6 +84,7 @@ namespace UI_Reiseboerse_Graf.Controllers
                 // benutzer in DB speichern
             }        
         }
+
         [HttpGet]
         public ActionResult BenutzerAnlegen()
         {
@@ -114,19 +110,46 @@ namespace UI_Reiseboerse_Graf.Controllers
         {
             KundenModel model = new KundenModel();
 
-            if (Globals.IST_TESTSYSTEM)
+            if (false)
             {
                 List<KundenModel> kundenListe = DummyKundenAnlegen();
 
                 model = kundenListe.Find(x => x.Email == User.Identity.Name); 
             }
-            else if (User.Identity.IsAuthenticated)
+            else
             {
-                reisebueroEntities daten = new reisebueroEntities();
+                List<Kunde> kunden = BenutzerVerwaltung.AlleKunden();
 
-                List<Kunde> kunden = daten.Kunde.ToList();
+                List<Land> laender = BenutzerVerwaltung.AlleLaender();
+                List<LandModel> lmListe = new List<LandModel>();
+                foreach (Land l in laender)
+                {
+                    lmListe.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
+                }
+
                 //ummappen des kundenmodels
-                model = kunden.Where(x => x.Benutzer.email == User.Identity.Name).FirstOrDefault();
+                foreach (Kunde k in kunden)
+                {
+                    if (k.Benutzer.email == User.Identity.Name)
+                    {
+                        model.Adresse = k.Benutzer.Adresse.plz.ToString() + " ";
+                        model.Adresse += k.Benutzer.Adresse.Ort.bezeichnung + " ";
+                        model.Adresse += k.Benutzer.Adresse.strasse + " ";
+                        model.Adresse += k.Benutzer.Adresse.nummer;
+                        model.Email = k.Benutzer.email;
+                        model.GeburtsDatum = k.geburtsdatum;
+                        model.Geschlecht = k.Benutzer.geschlecht;
+                        model.ID = k.id;
+                        model.Land_ID = k.Land.id;
+                        model.Nachname = k.Benutzer.nachname;
+                        model.Passwort = Tools.HashPasswortZuString(k.Benutzer.passwort);
+                        model.PasswortWiederholung = Tools.HashPasswortZuString(k.Benutzer.passwort);
+                        model.Telefon = k.Benutzer.telefon;
+                        model.Titel = k.titel;
+                        model.Vorname = k.Benutzer.vorname;
+                        model.Land = lmListe;
+                    }
+                }
             }
 
             return View(model);
@@ -139,31 +162,83 @@ namespace UI_Reiseboerse_Graf.Controllers
             /// Die geänderten Daten gehen wieder verloren, da
             /// bei erneutem Aufruf der Seite die Dummydaten wieder
             /// aufgerufen werden
-            if (Globals.IST_TESTSYSTEM)
-            {
                 List<KundenModel> kundenListe = DummyKundenAnlegen();
 
-                foreach (KundenModel k in kundenListe)
+                if (false)
                 {
-                    if (k.ID == model.ID)
+                    foreach (KundenModel k in kundenListe)
                     {
-                        k.Adresse = model.Adresse;
-                        k.Email = model.Email;
-                        k.GeburtsDatum = model.GeburtsDatum;
-                        k.Geschlecht = model.Geschlecht;
-                        k.Land = model.Land;
-                        k.Land_ID = model.Land_ID;
-                        k.Nachname = model.Nachname;
-                        k.Passwort = model.Passwort;
-                        k.PasswortWiederholung = model.PasswortWiederholung;
-                        k.Plz = model.Plz;
-                        k.Telefon = model.Telefon;
-                        k.Titel = model.Titel;
-                        k.Vorname = model.Vorname;
-                    }
+                        if (k.ID == model.ID)
+                        {
+                            k.Adresse = model.Adresse;
+                            k.Email = model.Email;
+                            k.GeburtsDatum = model.GeburtsDatum;
+                            k.Geschlecht = model.Geschlecht;
+                            k.Land = model.Land;
+                            k.Land_ID = model.Land_ID;
+                            k.Nachname = model.Nachname;
+                            k.Passwort = model.Passwort;
+                            k.PasswortWiederholung = model.PasswortWiederholung;
+                            k.Plz = model.Plz;
+                            k.Telefon = model.Telefon;
+                            k.Titel = model.Titel;
+                            k.Vorname = model.Vorname;
+                        }
+                    } 
                 }
-            }
+                else
+                {
+                    List<Kunde> kunden = BenutzerVerwaltung.AlleKunden();
 
+                    foreach (Kunde k in kunden)
+                    {
+                        if (k.id == model.ID)
+                        {
+                            #region AdresseSplitten
+                            
+                            /// Da die Adresse in der DB geteilt ist und im Model nicht,
+                            /// muss diese Hier "geteilt" werden
+                            string[] adressArray = null;
+                            adressArray = model.Adresse.Split(' ');
+
+                            #endregion
+
+                            #region Land
+
+                            /// Für jeden Kunden eine Liste von Ländern für
+                            /// die Profilseite zur Verfügung stellen
+                            Land l = new Land();
+                            foreach (LandModel lm in model.Land)
+                            {
+                                if (lm.land_ID == k.Land.id)
+                                {
+                                    l.id = lm.land_ID;
+                                    l.bezeichnung = lm.landName;
+                                }
+                            }
+                            #endregion
+
+                            k.Benutzer.Adresse.Land.id = model.Land_ID;
+                            k.Benutzer.Adresse.plz = int.Parse(adressArray[0]);
+                            k.Benutzer.Adresse.Ort.bezeichnung = adressArray[1];
+                            k.Benutzer.Adresse.strasse = adressArray[2];
+                            k.Benutzer.Adresse.nummer = adressArray[3];
+                            k.Benutzer.email = model.Email;
+                            k.geburtsdatum = model.GeburtsDatum;
+                            k.Benutzer.geschlecht = model.Geschlecht;
+                            k.Benutzer.nachname = model.Nachname;
+                            k.Benutzer.vorname = model.Vorname;
+                            k.Benutzer.passwort = Tools.GetHashPasswort(model.Passwort);
+                            k.Benutzer.passwort = Tools.GetHashPasswort(model.PasswortWiederholung);
+                            k.Benutzer.telefon = model.Telefon;
+                            k.titel = model.Titel;
+                            k.Land = l;
+                            
+                        }
+                    }
+                   
+                }
+            
             return RedirectToAction("Laden", "Reisen");
         }
 
@@ -205,15 +280,6 @@ namespace UI_Reiseboerse_Graf.Controllers
             }
 
             return kunden;
-        }
-
-        private string GetPasswort(byte[] passwort)
-        {
-            string pw = string.Empty;
-
-            pw = System.Text.Encoding.UTF8.GetString(passwort);
-
-            return pw;
         }
     }
 }

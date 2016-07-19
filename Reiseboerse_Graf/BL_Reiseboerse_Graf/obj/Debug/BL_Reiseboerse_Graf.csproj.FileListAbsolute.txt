@@ -16,3 +16,12 @@ C:\Users\admin\Desktop\Reiseboerse_Graf\BL_Reiseboerse_Graf\bin\Debug\de\EntityF
 C:\Users\admin\Desktop\Reiseboerse_Graf\BL_Reiseboerse_Graf\obj\Debug\BL_Reiseboerse_Graf.csprojResolveAssemblyReference.cache
 C:\Users\admin\Desktop\Reiseboerse_Graf\BL_Reiseboerse_Graf\obj\Debug\BL_Reiseboerse_Graf.dll
 C:\Users\admin\Desktop\Reiseboerse_Graf\BL_Reiseboerse_Graf\obj\Debug\BL_Reiseboerse_Graf.pdb
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\bin\Debug\BL_Reiseboerse_Graf.dll.config
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\bin\Debug\BL_Reiseboerse_Graf.dll
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\bin\Debug\BL_Reiseboerse_Graf.pdb
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\bin\Debug\EntityFramework.dll
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\bin\Debug\EntityFramework.xml
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\bin\Debug\de\EntityFramework.resources.dll
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\obj\Debug\BL_Reiseboerse_Graf.csprojResolveAssemblyReference.cache
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\obj\Debug\BL_Reiseboerse_Graf.dll
+C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\BL_Reiseboerse_Graf\obj\Debug\BL_Reiseboerse_Graf.pdb
