@@ -1,0 +1,185 @@
+ECHO ist ausgeschaltet (OFF).
+. 
+"starting database creation 13:27:48,53" 
+. 
+"try dropping database" 
+1> 2> 1> 2> 3> 4> 1>  
+ 
+"try creating database" 
+1> 2> 1> 2> 3> 1>  
+ 
+"try creating tables" 
+1> 2> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 57> 58> 59> 60> 61> 62> 63> 64> 65> 66> 67> 68> 69> 70> 71> 72> 73> 74> 75> 76> 77> 78> 79> 80> 81> 82> 83> 84> 85> 86> 87> 88> 89> 90> 91> 92> 93> 94> 95> 96> 97> 98> 99> 100> 101> 102> 103> 104> 105> 106> 107> 108> 109> 1>  
+ 
+"try creating primary keys" 
+1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 7> 1>  
+ 
+"try creating foreign keys" 
+1> 2> 3> 4> 5> 6> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3> 4> 5> 6> 7> 1> 2> 3>  
+ 
+"try creating indexes" 
+1> 2>  
+ 
+"try creating checks" 
+1> 2> 3> 4> 5>  
+ 
+"try creating function" 
+1>  
+ 
+"try inserting values" 
+1> 2> 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 20> 21> 22> 23> 24> 25> 26> 27> 28> 29> 30> 31> 32> 33> 34> 35> 36> 37> 38> 39> 40> 41> 42> 43> 44> 45> 46> 47> 48> 49> 50> 51> 52> 53> 54> 55> 56> 57> 58> 59> 60> 61> 62> 63> 64> 65> 66> 67> 68> 69> 70> 71> 72> 73> 74> 75> 76> 77> 78> 79> 80> 81> 82> 83> 84> 85> 86> 87> 88> 89> (1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 84
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\1_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\2_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\3_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\4_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\5_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\1_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\2_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\3_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\4_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+Das Massenladen ist nicht m”glich, da die Datei
+'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\5_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
+den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> (1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> (1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 6
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
+'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 7
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
+'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 8
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
+'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 9
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
+'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 10
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
+'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+1> 2> 3> 4> 5> 6> 7> Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 2
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
+Tabelle 'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 3
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
+Tabelle 'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 4
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
+Tabelle 'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 5
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
+Tabelle 'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 6
+Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
+'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
+Tabelle 'dbo.Bild', column 'id' auf.
+Die Anweisung wurde beendet.
+ 
+ 
+. 
+"stopping database creation 13:27:54,53" 
+. 
