@@ -67,7 +67,7 @@ namespace UI_Reiseboerse_Graf.Controllers
             //neuerBenutzer.Passwort = bm.Passwort;
             //neuerBenutzer.Geschlecht = bm.Geschlecht;
 
-            if (Globals.IST_TESTSYSTEM)
+            if (false)
             {
                 if (ModelState.IsValid)
                 {
@@ -113,6 +113,17 @@ namespace UI_Reiseboerse_Graf.Controllers
                 }
                 else
                 {
+                    reisebueroEntities context = new reisebueroEntities();
+
+                    List<Land> landList = BenutzerVerwaltung.AlleLaender();
+
+                    List<LandModel> lmList = new List<LandModel>();
+
+                    foreach (Land l in landList)
+                    {
+                        lmList.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
+                    }
+
                     return View(bm);
                 }
             }        
@@ -121,7 +132,7 @@ namespace UI_Reiseboerse_Graf.Controllers
         [HttpGet]
         public ActionResult BenutzerAnlegen()
         {
-            if (Globals.IST_TESTSYSTEM)
+            if (false)
             {
                 KundenAnlegenModel modell = new KundenAnlegenModel()
                 {
@@ -144,10 +155,15 @@ namespace UI_Reiseboerse_Graf.Controllers
 
                 KundenModel km = new KundenModel();
 
-                foreach (Land l in context.Land)
+                List<Land> laender = BenutzerVerwaltung.AlleLaender();
+                List<LandModel> landList = new List<LandModel>();
+
+                foreach (Land l in laender)
                 {
-                    km.Land.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
+                    landList.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
                 }
+
+                km.Land = landList;
 
                 return View(km);
             }
