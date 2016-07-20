@@ -54,6 +54,7 @@
     <Compile Include="Benutzer.cs">
       <DependentUpon>reisebueroDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="BenutzerVerwaltung.cs" />
     <Compile Include="Bewertung.cs">
       <DependentUpon>reisebueroDb.tt</DependentUpon>
     </Compile>
@@ -69,7 +70,6 @@
     <Compile Include="Buchung.cs">
       <DependentUpon>reisebueroDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="BenutzerVerwaltung.cs" />
     <Compile Include="BuchungsVerwaltung.cs" />
     <Compile Include="dbtest.Context.cs">
       <AutoGen>True</AutoGen>
@@ -93,9 +93,6 @@
       <DependentUpon>reisebueroDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Mitarbeiter.cs">
-      <DependentUpon>reisebueroDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ort.cs">
       <DependentUpon>reisebueroDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Reise.cs">

@@ -148,3 +148,4 @@ C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\UI_Reiseboerse_G
 C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\UI_Reiseboerse_Graf\obj\Debug\UI_Reiseboerse_Graf.dll
 C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\UI_Reiseboerse_Graf\obj\Debug\UI_Reiseboerse_Graf.pdb
 C:\Users\aktuser\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\UI_Reiseboerse_Graf\bin\de\EntityFramework.resources.dll
+C:\Users\admin\Documents\GitHub\Wurzenberger\Reiseboerse_Graf\UI_Reiseboerse_Graf\obj\Debug\UI_Reiseboerse_Graf.csprojResolveAssemblyReference.cache

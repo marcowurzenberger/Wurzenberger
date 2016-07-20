@@ -5,12 +5,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="plz" Type="Int32" Nullable="false" />
-    <Property Name="strasse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="nummer" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresse1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="erstelldatum" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Land" Relationship="Self.FK_Adresse_Land" FromRole="Adresse" ToRole="Land" />
-    <NavigationProperty Name="Ort" Relationship="Self.FK_Adresse_Ort" FromRole="Adresse" ToRole="Ort" />
     <NavigationProperty Name="Benutzer" Relationship="Self.FK_Benutzer_Adresse" FromRole="Adresse" ToRole="Benutzer" />
   </EntityType>
   <EntityType Name="Benutzer">
@@ -107,15 +104,6 @@
     <Property Name="erstelldatum" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Benutzer" Relationship="Self.FK_Mitarbeiter_Benutzer" FromRole="Mitarbeiter" ToRole="Benutzer" />
   </EntityType>
-  <EntityType Name="Ort">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="erstelldatum" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Adresse" Relationship="Self.FK_Adresse_Ort" FromRole="Ort" ToRole="Adresse" />
-  </EntityType>
   <EntityType Name="Reise">
     <Key>
       <PropertyRef Name="id" />
@@ -166,10 +154,6 @@
   </EntityType>
   <Association Name="FK_Adresse_Land">
     <End Role="Land" Type="Self.Land" Multiplicity="1" />
-    <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
-  </Association>
-  <Association Name="FK_Adresse_Ort">
-    <End Role="Ort" Type="Self.Ort" Multiplicity="1" />
     <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
   </Association>
   <Association Name="FK_Benutzer_Adresse">
@@ -247,17 +231,12 @@
     <EntitySet Name="Kunde" EntityType="Self.Kunde" />
     <EntitySet Name="Land" EntityType="Self.Land" />
     <EntitySet Name="Mitarbeiter" EntityType="Self.Mitarbeiter" />
-    <EntitySet Name="Ort" EntityType="Self.Ort" />
     <EntitySet Name="Reise" EntityType="Self.Reise" />
     <EntitySet Name="Reisedetail" EntityType="Self.Reisedetail" />
     <EntitySet Name="Unterkunft" EntityType="Self.Unterkunft" />
     <EntitySet Name="Verpflegung" EntityType="Self.Verpflegung" />
     <AssociationSet Name="FK_Adresse_Land" Association="Self.FK_Adresse_Land">
       <End Role="Land" EntitySet="Land" />
-      <End Role="Adresse" EntitySet="Adresse" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Adresse_Ort" Association="Self.FK_Adresse_Ort">
-      <End Role="Ort" EntitySet="Ort" />
       <End Role="Adresse" EntitySet="Adresse" />
     </AssociationSet>
     <AssociationSet Name="FK_Benutzer_Adresse" Association="Self.FK_Benutzer_Adresse">

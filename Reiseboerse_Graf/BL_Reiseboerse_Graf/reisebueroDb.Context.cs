@@ -35,7 +35,6 @@ namespace BL_Reiseboerse_Graf
         public DbSet<Kunde> Kunde { get; set; }
         public DbSet<Land> Land { get; set; }
         public DbSet<Mitarbeiter> Mitarbeiter { get; set; }
-        public DbSet<Ort> Ort { get; set; }
         public DbSet<Reise> Reise { get; set; }
         public DbSet<Reisedetail> Reisedetail { get; set; }
         public DbSet<Unterkunft> Unterkunft { get; set; }

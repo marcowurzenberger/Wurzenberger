@@ -20,13 +20,10 @@ namespace BL_Reiseboerse_Graf
         }
     
         public int id { get; set; }
-        public int plz { get; set; }
-        public string strasse { get; set; }
-        public string nummer { get; set; }
+        public string adresse1 { get; set; }
         public Nullable<System.DateTime> erstelldatum { get; set; }
     
         public virtual Land Land { get; set; }
-        public virtual Ort Ort { get; set; }
         public virtual ICollection<Benutzer> Benutzer { get; set; }
     }
 }

@@ -132,22 +132,24 @@ namespace UI_Reiseboerse_Graf.Controllers
                 {
                     if (k.Benutzer.email == User.Identity.Name)
                     {
-                        model.Adresse = k.Benutzer.Adresse.plz.ToString() + " ";
-                        model.Adresse += k.Benutzer.Adresse.Ort.bezeichnung + " ";
-                        model.Adresse += k.Benutzer.Adresse.strasse + " ";
-                        model.Adresse += k.Benutzer.Adresse.nummer;
-                        model.Email = k.Benutzer.email;
-                        model.GeburtsDatum = k.geburtsdatum;
-                        model.Geschlecht = k.Benutzer.geschlecht;
-                        model.ID = k.id;
-                        model.Land_ID = k.Land.id;
-                        model.Nachname = k.Benutzer.nachname;
-                        model.Passwort = Tools.HashPasswortZuString(k.Benutzer.passwort);
-                        model.PasswortWiederholung = Tools.HashPasswortZuString(k.Benutzer.passwort);
-                        model.Telefon = k.Benutzer.telefon;
-                        model.Titel = k.titel;
-                        model.Vorname = k.Benutzer.vorname;
-                        model.Land = lmListe;
+                        
+
+                        //model.Adresse = k.Benutzer.Adresse.plz.ToString() + " ";
+                        //model.Adresse += k.Benutzer.Adresse.Ort.bezeichnung + " ";
+                        //model.Adresse += k.Benutzer.Adresse.strasse + " ";
+                        //model.Adresse += k.Benutzer.Adresse.nummer;
+                        //model.Email = k.Benutzer.email;
+                        //model.GeburtsDatum = k.geburtsdatum;
+                        //model.Geschlecht = k.Benutzer.geschlecht;
+                        //model.ID = k.id;
+                        //model.Land_ID = k.Land.id;
+                        //model.Nachname = k.Benutzer.nachname;
+                        //model.Passwort = modelPasswort.ToString();
+                        //model.PasswortWiederholung = modelPasswortWH.ToString();
+                        //model.Telefon = k.Benutzer.telefon;
+                        //model.Titel = k.titel;
+                        //model.Vorname = k.Benutzer.vorname;
+                        //model.Land = lmListe;
                     }
                 }
             }
@@ -194,15 +196,6 @@ namespace UI_Reiseboerse_Graf.Controllers
                     {
                         if (k.id == model.ID)
                         {
-                            #region AdresseSplitten
-                            
-                            /// Da die Adresse in der DB geteilt ist und im Model nicht,
-                            /// muss diese Hier "geteilt" werden
-                            string[] adressArray = null;
-                            adressArray = model.Adresse.Split(' ');
-
-                            #endregion
-
                             #region Land
 
                             /// Für jeden Kunden eine Liste von Ländern für
@@ -216,20 +209,16 @@ namespace UI_Reiseboerse_Graf.Controllers
                                     l.bezeichnung = lm.landName;
                                 }
                             }
-                            #endregion
+                        #endregion
 
-                            k.Benutzer.Adresse.Land.id = model.Land_ID;
-                            k.Benutzer.Adresse.plz = int.Parse(adressArray[0]);
-                            k.Benutzer.Adresse.Ort.bezeichnung = adressArray[1];
-                            k.Benutzer.Adresse.strasse = adressArray[2];
-                            k.Benutzer.Adresse.nummer = adressArray[3];
+                            k.Benutzer.Adresse.adresse1 = model.Adresse;
                             k.Benutzer.email = model.Email;
                             k.geburtsdatum = model.GeburtsDatum;
                             k.Benutzer.geschlecht = model.Geschlecht;
                             k.Benutzer.nachname = model.Nachname;
                             k.Benutzer.vorname = model.Vorname;
-                            k.Benutzer.passwort = Tools.GetHashPasswort(model.Passwort);
-                            k.Benutzer.passwort = Tools.GetHashPasswort(model.PasswortWiederholung);
+                            k.Benutzer.passwort = Tools.PasswortZuByteArray(model.Passwort);
+                            k.Benutzer.passwort = Tools.PasswortZuByteArray(model.PasswortWiederholung);
                             k.Benutzer.telefon = model.Telefon;
                             k.titel = model.Titel;
                             k.Land = l;

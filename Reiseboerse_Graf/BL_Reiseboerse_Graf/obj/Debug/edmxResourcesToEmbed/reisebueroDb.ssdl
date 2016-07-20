@@ -6,10 +6,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="land_id" Type="int" Nullable="false" />
-    <Property Name="ort_id" Type="int" Nullable="false" />
-    <Property Name="plz" Type="int" Nullable="false" />
-    <Property Name="strasse" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="nummer" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="adresse" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="erstelldatum" Type="datetime" />
   </EntityType>
   <EntityType Name="Benutzer">
@@ -97,14 +94,6 @@
     <Property Name="svnr" Type="int" Nullable="false" />
     <Property Name="erstelldatum" Type="datetime" />
   </EntityType>
-  <EntityType Name="Ort">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="erstelldatum" Type="datetime" />
-  </EntityType>
   <EntityType Name="Reise">
     <Key>
       <PropertyRef Name="id" />
@@ -156,18 +145,6 @@
       </Principal>
       <Dependent Role="Adresse">
         <PropertyRef Name="land_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Adresse_Ort">
-    <End Role="Ort" Type="Self.Ort" Multiplicity="1" />
-    <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ort">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Adresse">
-        <PropertyRef Name="ort_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -350,17 +327,12 @@
     <EntitySet Name="Kunde" EntityType="Self.Kunde" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Land" EntityType="Self.Land" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mitarbeiter" EntityType="Self.Mitarbeiter" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Ort" EntityType="Self.Ort" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reise" EntityType="Self.Reise" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reisedetail" EntityType="Self.Reisedetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Unterkunft" EntityType="Self.Unterkunft" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Verpflegung" EntityType="Self.Verpflegung" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Adresse_Land" Association="Self.FK_Adresse_Land">
       <End Role="Land" EntitySet="Land" />
-      <End Role="Adresse" EntitySet="Adresse" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Adresse_Ort" Association="Self.FK_Adresse_Ort">
-      <End Role="Ort" EntitySet="Ort" />
       <End Role="Adresse" EntitySet="Adresse" />
     </AssociationSet>
     <AssociationSet Name="FK_Benutzer_Adresse" Association="Self.FK_Benutzer_Adresse">
