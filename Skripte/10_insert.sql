@@ -24,15 +24,15 @@ INSERT INTO Adresse(land_id, adresse)
 VALUES(5, '52541 Boulevard du Paris');
 
 INSERT INTO Benutzer(email, passwort, vorname, nachname, geschlecht, adresse_id, telefon)
-VALUES('muster@itfox.at', HASHBYTES('SHA2_512', '123user!'), 'Max', 'Muster', 0, 1, 0043676123456);
+VALUES('muster@itfox.at', HASHBYTES('SHA2_256', '123user!'), 'Max', 'Muster', 0, 1, 0043676123456);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, geschlecht, adresse_id, telefon)
-VALUES('marco@itfox.at', HASHBYTES('SHA2_512', '123user!'), 'Marco', 'Wurz', 0, 2, 0049743212121);
+VALUES('marco@itfox.at', HASHBYTES('SHA2_256', '123user!'), 'Marco', 'Wurz', 0, 2, 0049743212121);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, geschlecht, adresse_id, telefon)
-VALUES('claudia@itfox.at', HASHBYTES('SHA2_512', '123user!'), 'Claudia', 'Stiegl', 1, 3, 003256124565);
+VALUES('claudia@itfox.at', HASHBYTES('SHA2_256', '123user!'), 'Claudia', 'Stiegl', 1, 3, 003256124565);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, geschlecht, adresse_id, telefon)
-VALUES('daniel@itfox.at', HASHBYTES('SHA2_512', '123user!'), 'Daniel', 'Zalli', 0, 4, 00396123456);
+VALUES('daniel@itfox.at', HASHBYTES('SHA2_256', '123user!'), 'Daniel', 'Zalli', 0, 4, 00396123456);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, geschlecht, adresse_id, telefon)
-VALUES('stefan@itfox.at', HASHBYTES('SHA2_512', '123user!'), 'Stefan', 'Groig', 0, 5, 0055236458);
+VALUES('stefan@itfox.at', HASHBYTES('SHA2_256', '123user!'), 'Stefan', 'Groig', 0, 5, 0055236458);
 
 INSERT INTO Kunde(benutzer_id, geburtsdatum, titel, land_id)
 VALUES(1, '1990/1/1', 'Mag.', 1);

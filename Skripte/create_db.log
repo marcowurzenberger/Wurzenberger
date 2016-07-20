@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation 13:27:48,53" 
+"starting database creation 14:52:20,19" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 3> 4> 1>  
@@ -181,5 +181,5 @@ Die Anweisung wurde beendet.
  
  
 . 
-"stopping database creation 13:27:54,53" 
+"stopping database creation 14:52:24,68" 
 . 

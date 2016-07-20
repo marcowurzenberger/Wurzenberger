@@ -81,27 +81,76 @@ namespace UI_Reiseboerse_Graf.Controllers
             }
             else
             {
-                // benutzer in DB speichern
+                if (ModelState.IsValid)
+                {
+                    // benutzer in DB speichern
+                    reisebueroEntities context = new reisebueroEntities();
+
+                    List<Benutzer> benutzer = context.Benutzer.ToList();
+
+                    Benutzer neuerBenutzer = new Benutzer();
+                    Kunde neuerKunde = new Kunde();
+
+                    neuerBenutzer.Adresse.adresse1 = bm.Adresse;
+                    neuerBenutzer.email = bm.Email;
+                    neuerBenutzer.geschlecht = bm.Geschlecht;
+                    neuerBenutzer.passwort = Tools.PasswortZuByteArray(bm.Passwort);
+                    neuerBenutzer.telefon = bm.Telefon;
+                    neuerBenutzer.vorname = bm.Vorname;
+                    neuerBenutzer.nachname = bm.Nachname;
+
+                    neuerKunde.Benutzer = neuerBenutzer;
+                    neuerKunde.geburtsdatum = bm.GeburtsDatum;
+                    neuerKunde.titel = bm.Titel;
+                    neuerKunde.Land.id = bm.Land_ID;
+
+                    neuerBenutzer.Kunde.Add(neuerKunde);
+                    benutzer.Add(neuerBenutzer);
+
+                    context.SaveChanges();
+
+                    return RedirectToAction("Laden", "Reisen");
+                }
+                else
+                {
+                    return View(bm);
+                }
             }        
         }
 
         [HttpGet]
         public ActionResult BenutzerAnlegen()
         {
-            KundenAnlegenModel modell = new KundenAnlegenModel()
+            if (Globals.IST_TESTSYSTEM)
             {
-                Land = new List<LandModel>()
-
-            };
-            for (int i = 0; i < 3; i++)
-            {
-                modell.Land.Add(new LandModel()
+                KundenAnlegenModel modell = new KundenAnlegenModel()
                 {
-                    landName = "Land" + i,
-                    land_ID = i + 1
-                });
+                    Land = new List<LandModel>()
+
+                };
+                for (int i = 0; i < 3; i++)
+                {
+                    modell.Land.Add(new LandModel()
+                    {
+                        landName = "Land" + i,
+                        land_ID = i + 1
+                    });
+                }
+                return View(modell); 
             }
-            return View(modell);
+            else
+            {
+                reisebueroEntities context = new reisebueroEntities();
+
+                KundenModel km = new KundenModel();
+
+                foreach (Land l in context.Land)
+                {
+                    km.Land.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
+                }
+
+                return View(km);
+            }
         }
 
         [Authorize]
@@ -132,24 +181,19 @@ namespace UI_Reiseboerse_Graf.Controllers
                 {
                     if (k.Benutzer.email == User.Identity.Name)
                     {
-                        
-
-                        //model.Adresse = k.Benutzer.Adresse.plz.ToString() + " ";
-                        //model.Adresse += k.Benutzer.Adresse.Ort.bezeichnung + " ";
-                        //model.Adresse += k.Benutzer.Adresse.strasse + " ";
-                        //model.Adresse += k.Benutzer.Adresse.nummer;
-                        //model.Email = k.Benutzer.email;
-                        //model.GeburtsDatum = k.geburtsdatum;
-                        //model.Geschlecht = k.Benutzer.geschlecht;
-                        //model.ID = k.id;
-                        //model.Land_ID = k.Land.id;
-                        //model.Nachname = k.Benutzer.nachname;
-                        //model.Passwort = modelPasswort.ToString();
-                        //model.PasswortWiederholung = modelPasswortWH.ToString();
-                        //model.Telefon = k.Benutzer.telefon;
-                        //model.Titel = k.titel;
-                        //model.Vorname = k.Benutzer.vorname;
-                        //model.Land = lmListe;
+                        model.Adresse = k.Benutzer.Adresse.adresse1;
+                        model.Email = k.Benutzer.email;
+                        model.GeburtsDatum = k.geburtsdatum;
+                        model.Geschlecht = k.Benutzer.geschlecht;
+                        model.Land_ID = k.Land.id;
+                        model.Nachname = k.Benutzer.nachname;
+                        model.Passwort = k.Benutzer.passwort.ToString();
+                        model.PasswortWiederholung = k.Benutzer.passwort.ToString();
+                        model.Telefon = k.Benutzer.telefon;
+                        model.Titel = k.titel;
+                        model.Vorname = k.Benutzer.vorname;
+                        model.Land = lmListe;
+                        model.ID = k.id;
                     }
                 }
             }
