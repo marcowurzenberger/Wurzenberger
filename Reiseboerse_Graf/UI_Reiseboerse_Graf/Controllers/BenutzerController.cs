@@ -23,12 +23,14 @@ namespace UI_Reiseboerse_Graf.Controllers
         {
             return View();
         }
+
         [ChildActionOnly]
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(LoginModel lm)
         {
@@ -57,9 +59,22 @@ namespace UI_Reiseboerse_Graf.Controllers
         }
 
         [HttpPost]
-        public ActionResult BenutzerAnlegen(KundenAnlegenModel bm)
+        public ActionResult Anlegen(KundenAnlegenModel bm)
         {
+            reisebueroEntities context = new reisebueroEntities();
 
+            List<Land> landList = new List<Land>();
+            landList = BenutzerVerwaltung.AlleLaender();
+
+            List<LandModel> lmList = new List<LandModel>();
+
+            List<Benutzer> benutzer = new List<Benutzer>();
+            benutzer = context.Benutzer.ToList();
+
+            Benutzer neuerBenutzer = new Benutzer();
+            neuerBenutzer.Adresse = new Adresse();
+            Kunde neuerKunde = new Kunde();
+            neuerKunde.Land = new Land();
             //Benutzer neuerBenutzer = new Benutzer();
             //neuerBenutzer.Id = bm.ID;
             //neuerBenutzer.Vorname = bm.Vorname;
@@ -67,30 +82,37 @@ namespace UI_Reiseboerse_Graf.Controllers
             //neuerBenutzer.Passwort = bm.Passwort;
             //neuerBenutzer.Geschlecht = bm.Geschlecht;
 
-            if (false)
-            {
-                if (ModelState.IsValid)
+            //if (false)
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        Debug.WriteLine("Erfolgreich");
+            //        return RedirectToAction("Laden", "Reisen");
+            //    }
+            //    else
+            //    {
+            //        return View(bm);
+            //    }
+            //}
+            //else
+            //{
+            if (ModelState.IsValid)
                 {
-                    Debug.WriteLine("Erfolgreich");
-                    return RedirectToAction("Laden", "Reisen");
-                }
-                else
-                {
-                    return View(bm);
-                }
-            }
-            else
-            {
-                if (ModelState.IsValid)
-                {
-                    // benutzer in DB speichern
-                    reisebueroEntities context = new reisebueroEntities();
+                //reisebueroEntities context = new reisebueroEntities();
 
-                    List<Benutzer> benutzer = context.Benutzer.ToList();
+                //List<Land> landList = BenutzerVerwaltung.AlleLaender();
 
-                    Benutzer neuerBenutzer = new Benutzer();
-                    Kunde neuerKunde = new Kunde();
+                //List<LandModel> lmList = new List<LandModel>();
 
+                // benutzer in DB speichern
+                //reisebueroEntities context = new reisebueroEntities();
+
+                //List<Benutzer> benutzer = context.Benutzer.ToList();
+
+                //Benutzer neuerBenutzer = new Benutzer();
+                //Kunde neuerKunde = new Kunde();
+
+                //neuerBenutzer.Adresse.Land.id = bm.Land_ID;
                     neuerBenutzer.Adresse.adresse1 = bm.Adresse;
                     neuerBenutzer.email = bm.Email;
                     neuerBenutzer.geschlecht = bm.Geschlecht;
@@ -113,11 +135,11 @@ namespace UI_Reiseboerse_Graf.Controllers
                 }
                 else
                 {
-                    reisebueroEntities context = new reisebueroEntities();
+                    //reisebueroEntities context = new reisebueroEntities();
 
-                    List<Land> landList = BenutzerVerwaltung.AlleLaender();
+                    //List<Land> landList = BenutzerVerwaltung.AlleLaender();
 
-                    List<LandModel> lmList = new List<LandModel>();
+                    //List<LandModel> lmList = new List<LandModel>();
 
                     foreach (Land l in landList)
                     {
@@ -126,11 +148,11 @@ namespace UI_Reiseboerse_Graf.Controllers
 
                     return View(bm);
                 }
-            }        
+            //}        
         }
 
         [HttpGet]
-        public ActionResult BenutzerAnlegen()
+        public ActionResult Anlegen()
         {
             if (false)
             {
@@ -154,6 +176,7 @@ namespace UI_Reiseboerse_Graf.Controllers
                 reisebueroEntities context = new reisebueroEntities();
 
                 KundenModel km = new KundenModel();
+                km.GeburtsDatum = DateTime.Now;
 
                 List<Land> laender = BenutzerVerwaltung.AlleLaender();
                 List<LandModel> landList = new List<LandModel>();
@@ -241,7 +264,7 @@ namespace UI_Reiseboerse_Graf.Controllers
                             k.Nachname = model.Nachname;
                             k.Passwort = model.Passwort;
                             k.PasswortWiederholung = model.PasswortWiederholung;
-                            k.Plz = model.Plz;
+                            //k.Plz = model.Plz;
                             k.Telefon = model.Telefon;
                             k.Titel = model.Titel;
                             k.Vorname = model.Vorname;
@@ -320,7 +343,7 @@ namespace UI_Reiseboerse_Graf.Controllers
                     },
                     Passwort = "123" + i + "user!",
                     PasswortWiederholung = "123" + i + "user!",
-                    Plz = "101" + i,
+                    //Plz = "101" + i,
                     Telefon = "067612345" + i,
                     Titel = "",
                     Adresse = "Musterstrasse 1" + i,

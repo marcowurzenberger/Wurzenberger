@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation 14:52:20,19" 
+"starting database creation 10:02:17,44" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 3> 4> 1>  
@@ -72,108 +72,108 @@ ECHO ist ausgeschaltet (OFF).
 (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
-Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 84
+Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 84
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\1_hotel_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\1_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\2_hotel_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\2_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\3_hotel_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\3_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\4_hotel_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\4_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\5_hotel_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\5_hotel_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\1_reise_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\1_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\2_reise_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\2_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\3_reise_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\3_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\4_reise_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
-1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 1
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\4_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
+1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 1
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\5_reise_test.
-jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System kann
-den angegebenen Pfad nicht finden.).
+'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\5_reise_test.
+jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
+verweigert).
 1> 2> 3> 4> 5> (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 6
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 6
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 7
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 7
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 8
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 8
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 9
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 9
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 10
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 10
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Reise_Bild'. Der Konflikt trat in der reisebuero-Datenbank, Tabelle
 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-1> 2> 3> 4> 5> 6> 7> Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 2
+1> 2> 3> 4> 5> 6> 7> Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 2
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
 Tabelle 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 3
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 3
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
 Tabelle 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 4
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 4
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
 Tabelle 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 5
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 5
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
 Tabelle 'dbo.Bild', column 'id' auf.
 Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC5\SQLEXPRESS', Zeile 6
+Meldung '547', Ebene '16', Status '1', Server 'ADMIN-PC', Zeile 6
 Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
 'FK_Bild_Unterkunft_Bild'. Der Konflikt trat in der reisebuero-Datenbank,
 Tabelle 'dbo.Bild', column 'id' auf.
@@ -181,5 +181,5 @@ Die Anweisung wurde beendet.
  
  
 . 
-"stopping database creation 14:52:24,68" 
+"stopping database creation 10:02:18,39" 
 . 

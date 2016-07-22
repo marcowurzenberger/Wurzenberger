@@ -86,61 +86,61 @@ VALUES(5, '2017-01-03', '2017-15-03', '2017-02-02');
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\1_hotel_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\1_hotel_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\2_hotel_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\2_hotel_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\3_hotel_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\3_hotel_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\4_hotel_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\4_hotel_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\5_hotel_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\5_hotel_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\1_reise_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\1_reise_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\2_reise_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\2_reise_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\3_reise_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\3_reise_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\4_reise_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\4_reise_test.jpg', Single_Blob) 
 AS import;
 GO
 INSERT INTO Bild (bild)
 SELECT *
 FROM Openrowset( 
-Bulk 'C:\ITIN20AKT\Datenbank\reisebuero_skripten_datenbank\testimages\5_reise_test.jpg', Single_Blob) 
+Bulk 'C:\Users\admin\Documents\GitHub\Wurzenberger\Skripte\testimages\5_reise_test.jpg', Single_Blob) 
 AS import;
 GO
 
