@@ -19,7 +19,7 @@ namespace BL_Reiseboerse_Graf
         {
             reisebueroEntities context = new reisebueroEntities();
 
-            SHA256 hash = SHA256.Create();
+            SHA512 hash = SHA512.Create();
 
             byte[] pw = hash.ComputeHash(Encoding.UTF8.GetBytes(passwort));
 

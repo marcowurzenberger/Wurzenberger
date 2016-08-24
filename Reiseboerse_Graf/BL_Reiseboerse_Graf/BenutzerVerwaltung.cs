@@ -14,7 +14,7 @@ namespace BL_Reiseboerse_Graf
         /// </summary>
         /// <param name="benutzerName">Die vergebene Email-Adresse</param>
         /// <param name="passwort">Das vergebene Passwort</param>
-        /// <returns>true or false</returns>
+        /// <returns>true oder false</returns>
         public static bool Anmelden(string benutzerName, string passwort)
         {
            return Tools.PasswortUndEmailVergleich(benutzerName, passwort);
@@ -44,15 +44,6 @@ namespace BL_Reiseboerse_Graf
             List<Land> alleLaender = context.Land.ToList();
 
             return alleLaender;
-        }
-
-        /// <summary>
-        /// Speichert Änderungen in der DB
-        /// </summary>
-        /// <param name="context">Die DB-Verbindung</param>
-        public static void Speichern(reisebueroEntities context)
-        {
-            context.SaveChanges();
         }
     }
 }

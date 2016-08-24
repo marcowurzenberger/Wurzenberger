@@ -75,121 +75,63 @@ namespace UI_Reiseboerse_Graf.Controllers
             neuerBenutzer.Adresse = new Adresse();
             Kunde neuerKunde = new Kunde();
             neuerKunde.Land = new Land();
-            //Benutzer neuerBenutzer = new Benutzer();
-            //neuerBenutzer.Id = bm.ID;
-            //neuerBenutzer.Vorname = bm.Vorname;
-            //neuerBenutzer.Nachname = bm.Nachname;
-            //neuerBenutzer.Passwort = bm.Passwort;
-            //neuerBenutzer.Geschlecht = bm.Geschlecht;
 
-            //if (false)
-            //{
-            //    if (ModelState.IsValid)
-            //    {
-            //        Debug.WriteLine("Erfolgreich");
-            //        return RedirectToAction("Laden", "Reisen");
-            //    }
-            //    else
-            //    {
-            //        return View(bm);
-            //    }
-            //}
-            //else
-            //{
             if (ModelState.IsValid)
+            {
+                neuerBenutzer.Adresse.adresse1 = bm.Adresse;
+                neuerBenutzer.email = bm.Email;
+                neuerBenutzer.geschlecht = bm.Geschlecht;
+                neuerBenutzer.passwort = Tools.PasswortZuByteArray(bm.Passwort);
+                neuerBenutzer.telefon = bm.Telefon;
+                neuerBenutzer.vorname = bm.Vorname;
+                neuerBenutzer.nachname = bm.Nachname;
+
+                neuerKunde.Benutzer = neuerBenutzer;
+                neuerKunde.geburtsdatum = bm.GeburtsDatum;
+                neuerKunde.titel = bm.Titel;
+                neuerKunde.Land.id = bm.Land_ID;
+
+                neuerBenutzer.Kunde.Add(neuerKunde);
+                benutzer.Add(neuerBenutzer);
+
+                context.SaveChanges();
+
+                return RedirectToAction("Laden", "Reisen");
+            }
+            else
+            {
+                /// Wenn das Model nicht valide ist, wird eine neue Landliste generiert,
+                /// da dieses bei erneutem Aufruf sonst verloren geht
+                foreach (Land l in landList)
                 {
-                //reisebueroEntities context = new reisebueroEntities();
-
-                //List<Land> landList = BenutzerVerwaltung.AlleLaender();
-
-                //List<LandModel> lmList = new List<LandModel>();
-
-                // benutzer in DB speichern
-                //reisebueroEntities context = new reisebueroEntities();
-
-                //List<Benutzer> benutzer = context.Benutzer.ToList();
-
-                //Benutzer neuerBenutzer = new Benutzer();
-                //Kunde neuerKunde = new Kunde();
-
-                //neuerBenutzer.Adresse.Land.id = bm.Land_ID;
-                    neuerBenutzer.Adresse.adresse1 = bm.Adresse;
-                    neuerBenutzer.email = bm.Email;
-                    neuerBenutzer.geschlecht = bm.Geschlecht;
-                    neuerBenutzer.passwort = Tools.PasswortZuByteArray(bm.Passwort);
-                    neuerBenutzer.telefon = bm.Telefon;
-                    neuerBenutzer.vorname = bm.Vorname;
-                    neuerBenutzer.nachname = bm.Nachname;
-
-                    neuerKunde.Benutzer = neuerBenutzer;
-                    neuerKunde.geburtsdatum = bm.GeburtsDatum;
-                    neuerKunde.titel = bm.Titel;
-                    neuerKunde.Land.id = bm.Land_ID;
-
-                    neuerBenutzer.Kunde.Add(neuerKunde);
-                    benutzer.Add(neuerBenutzer);
-
-                    context.SaveChanges();
-
-                    return RedirectToAction("Laden", "Reisen");
+                    lmList.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
                 }
-                else
-                {
-                    //reisebueroEntities context = new reisebueroEntities();
 
-                    //List<Land> landList = BenutzerVerwaltung.AlleLaender();
-
-                    //List<LandModel> lmList = new List<LandModel>();
-
-                    foreach (Land l in landList)
-                    {
-                        lmList.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
-                    }
-
-                    return View(bm);
-                }
-            //}        
+                return View(bm);
+            }
         }
 
         [HttpGet]
         public ActionResult Anlegen()
         {
-            if (false)
+            reisebueroEntities context = new reisebueroEntities();
+
+            KundenModel km = new KundenModel();
+            km.GeburtsDatum = DateTime.Now;
+
+            List<Land> laender = BenutzerVerwaltung.AlleLaender();
+            List<LandModel> landList = new List<LandModel>();
+
+            /// Hier werden die Länder der landList hinzugefügt um
+            /// die Dropdown-Liste in der View zu füllen
+            foreach (Land l in laender)
             {
-                KundenAnlegenModel modell = new KundenAnlegenModel()
-                {
-                    Land = new List<LandModel>()
-
-                };
-                for (int i = 0; i < 3; i++)
-                {
-                    modell.Land.Add(new LandModel()
-                    {
-                        landName = "Land" + i,
-                        land_ID = i + 1
-                    });
-                }
-                return View(modell); 
+                landList.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
             }
-            else
-            {
-                reisebueroEntities context = new reisebueroEntities();
 
-                KundenModel km = new KundenModel();
-                km.GeburtsDatum = DateTime.Now;
+            km.Land = landList;
 
-                List<Land> laender = BenutzerVerwaltung.AlleLaender();
-                List<LandModel> landList = new List<LandModel>();
-
-                foreach (Land l in laender)
-                {
-                    landList.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
-                }
-
-                km.Land = landList;
-
-                return View(km);
-            }
+            return View(km);
         }
 
         [Authorize]
@@ -198,42 +140,33 @@ namespace UI_Reiseboerse_Graf.Controllers
         {
             KundenModel model = new KundenModel();
 
-            if (false)
-            {
-                List<KundenModel> kundenListe = DummyKundenAnlegen();
+            List<Kunde> kunden = BenutzerVerwaltung.AlleKunden();
 
-                model = kundenListe.Find(x => x.Email == User.Identity.Name); 
+            List<Land> laender = BenutzerVerwaltung.AlleLaender();
+            List<LandModel> lmListe = new List<LandModel>();
+            foreach (Land l in laender)
+            {
+                lmListe.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
             }
-            else
+
+            //ummappen des kundenmodels
+            foreach (Kunde k in kunden)
             {
-                List<Kunde> kunden = BenutzerVerwaltung.AlleKunden();
-
-                List<Land> laender = BenutzerVerwaltung.AlleLaender();
-                List<LandModel> lmListe = new List<LandModel>();
-                foreach (Land l in laender)
+                if (k.Benutzer.email == User.Identity.Name)
                 {
-                    lmListe.Add(new LandModel() { landName = l.bezeichnung, land_ID = l.id });
-                }
-
-                //ummappen des kundenmodels
-                foreach (Kunde k in kunden)
-                {
-                    if (k.Benutzer.email == User.Identity.Name)
-                    {
-                        model.Adresse = k.Benutzer.Adresse.adresse1;
-                        model.Email = k.Benutzer.email;
-                        model.GeburtsDatum = k.geburtsdatum;
-                        model.Geschlecht = k.Benutzer.geschlecht;
-                        model.Land_ID = k.Land.id;
-                        model.Nachname = k.Benutzer.nachname;
-                        model.Passwort = k.Benutzer.passwort.ToString();
-                        model.PasswortWiederholung = k.Benutzer.passwort.ToString();
-                        model.Telefon = k.Benutzer.telefon;
-                        model.Titel = k.titel;
-                        model.Vorname = k.Benutzer.vorname;
-                        model.Land = lmListe;
-                        model.ID = k.id;
-                    }
+                    model.Adresse = k.Benutzer.Adresse.adresse1;
+                    model.Email = k.Benutzer.email;
+                    model.GeburtsDatum = k.geburtsdatum;
+                    model.Geschlecht = k.Benutzer.geschlecht;
+                    model.Land_ID = k.Land.id;
+                    model.Nachname = k.Benutzer.nachname;
+                    model.Passwort = k.Benutzer.passwort.ToString();
+                    model.PasswortWiederholung = k.Benutzer.passwort.ToString();
+                    model.Telefon = k.Benutzer.telefon;
+                    model.Titel = k.titel;
+                    model.Vorname = k.Benutzer.vorname;
+                    model.Land = lmListe;
+                    model.ID = k.id;
                 }
             }
 
@@ -244,73 +177,40 @@ namespace UI_Reiseboerse_Graf.Controllers
         [HttpPost]
         public ActionResult Aktualisieren(KundenModel model)
         {
-            /// Die geänderten Daten gehen wieder verloren, da
-            /// bei erneutem Aufruf der Seite die Dummydaten wieder
-            /// aufgerufen werden
-                List<KundenModel> kundenListe = DummyKundenAnlegen();
+            List<Kunde> kunden = BenutzerVerwaltung.AlleKunden();
 
-                if (false)
+            foreach (Kunde k in kunden)
+            {
+                if (k.id == model.ID)
                 {
-                    foreach (KundenModel k in kundenListe)
+                    #region Land
+
+                    /// Das ausgewählte Land des Kunden muss wieder neu geladen werden
+                    Land l = new Land();
+                    foreach (LandModel lm in model.Land)
                     {
-                        if (k.ID == model.ID)
+                        if (lm.land_ID == k.Land.id)
                         {
-                            k.Adresse = model.Adresse;
-                            k.Email = model.Email;
-                            k.GeburtsDatum = model.GeburtsDatum;
-                            k.Geschlecht = model.Geschlecht;
-                            k.Land = model.Land;
-                            k.Land_ID = model.Land_ID;
-                            k.Nachname = model.Nachname;
-                            k.Passwort = model.Passwort;
-                            k.PasswortWiederholung = model.PasswortWiederholung;
-                            //k.Plz = model.Plz;
-                            k.Telefon = model.Telefon;
-                            k.Titel = model.Titel;
-                            k.Vorname = model.Vorname;
-                        }
-                    } 
-                }
-                else
-                {
-                    List<Kunde> kunden = BenutzerVerwaltung.AlleKunden();
-
-                    foreach (Kunde k in kunden)
-                    {
-                        if (k.id == model.ID)
-                        {
-                            #region Land
-
-                            /// Für jeden Kunden eine Liste von Ländern für
-                            /// die Profilseite zur Verfügung stellen
-                            Land l = new Land();
-                            foreach (LandModel lm in model.Land)
-                            {
-                                if (lm.land_ID == k.Land.id)
-                                {
-                                    l.id = lm.land_ID;
-                                    l.bezeichnung = lm.landName;
-                                }
-                            }
-                        #endregion
-
-                            k.Benutzer.Adresse.adresse1 = model.Adresse;
-                            k.Benutzer.email = model.Email;
-                            k.geburtsdatum = model.GeburtsDatum;
-                            k.Benutzer.geschlecht = model.Geschlecht;
-                            k.Benutzer.nachname = model.Nachname;
-                            k.Benutzer.vorname = model.Vorname;
-                            k.Benutzer.passwort = Tools.PasswortZuByteArray(model.Passwort);
-                            k.Benutzer.passwort = Tools.PasswortZuByteArray(model.PasswortWiederholung);
-                            k.Benutzer.telefon = model.Telefon;
-                            k.titel = model.Titel;
-                            k.Land = l;
-                            
+                            l.id = lm.land_ID;
+                            l.bezeichnung = lm.landName;
                         }
                     }
-                   
+                    #endregion
+
+                    k.Benutzer.Adresse.adresse1 = model.Adresse;
+                    k.Benutzer.email = model.Email;
+                    k.Benutzer.geschlecht = model.Geschlecht;
+                    k.Benutzer.nachname = model.Nachname;
+                    k.Benutzer.vorname = model.Vorname;
+                    k.Benutzer.passwort = Tools.PasswortZuByteArray(model.Passwort);
+                    k.Benutzer.passwort = Tools.PasswortZuByteArray(model.PasswortWiederholung);
+                    k.Benutzer.telefon = model.Telefon;
+                    k.titel = model.Titel;
+                    k.Land = l;
+                    k.geburtsdatum = model.GeburtsDatum;
+
                 }
-            
+            }
             return RedirectToAction("Laden", "Reisen");
         }
 

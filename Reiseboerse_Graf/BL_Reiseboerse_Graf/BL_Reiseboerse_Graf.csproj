@@ -71,21 +71,6 @@
       <DependentUpon>reisebueroDb.tt</DependentUpon>
     </Compile>
     <Compile Include="BuchungsVerwaltung.cs" />
-    <Compile Include="dbtest.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbtest.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbtest.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbtest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbtest.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbtest.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Kunde.cs">
       <DependentUpon>reisebueroDb.tt</DependentUpon>
     </Compile>
@@ -128,13 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="dbtest.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbtest.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="dbtest.edmx.diagram">
-      <DependentUpon>dbtest.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="reisebueroDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -148,16 +126,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dbtest.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbtest.edmx</DependentUpon>
-      <LastGenOutput>dbtest.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="dbtest.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbtest.edmx</DependentUpon>
-      <LastGenOutput>dbtest.cs</LastGenOutput>
-    </Content>
     <Content Include="reisebueroDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>reisebueroDb.edmx</DependentUpon>
